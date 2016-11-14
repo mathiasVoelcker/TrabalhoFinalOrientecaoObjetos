@@ -24,16 +24,16 @@ public class Celular {
         this.localizacao = localizacao;
     }
     
-    public void enviarMensagem(String numCelularDesejado,  String mensagem, Central central) throws InterruptedException{
-        escreverMensagem(mensagem, numCelularDesejado);
+    public void enviarMensagem(String numCelularDesejado,  String mensagemTexto, Central central) throws InterruptedException{
+        Mensagem mensagem = escreverMensagem(mensagemTexto, numCelularDesejado);
         procurarAntena(central.getAntenas());
-        antenaMaisProxima.solicitarCentral(numCelularDesejado, central, mensagem);
+        antenaMaisProxima.solicitarCentral(central, mensagem);
     }
     
     public void procurarAntena(List<Antena> antenas){
         antenaMaisProxima = antenas.get(0);
         for(Antena antena: antenas){
-            if((antenaMaisProxima.getLocalizacao() - localizacao) > (antena.getLocalizacao() - localizacao))
+            if(distancia(antena.getLocalizacao(), localizacao) < distancia(antenaMaisProxima.getLocalizacao(), localizacao))
                 antenaMaisProxima = antena;
         }
     }
@@ -53,6 +53,10 @@ public class Celular {
     
     public Mensagem escreverMensagem(String texto, String numCelularDesejado){
         return new Mensagem(texto, numCelularDesejado, numero);
+    }
+    
+    public int distancia(int local1, int local2){
+        return Math.abs(local1 - local2); //math.abs faz o modulo de tal numero, assim mesmo se a subtracao der valor negativo, vai retornar um valor positivo
     }
     
 }

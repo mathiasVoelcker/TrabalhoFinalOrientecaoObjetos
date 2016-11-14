@@ -46,7 +46,12 @@ public class TrabalhoOO {
         
         Central central = new Central(celulares, antenas);
         
-        c1.enviarMensagem("99997796", "0pa, tudo bom?", central);
+        c1.enviarMensagem("99932438", "0pa, tudo bom?", central);
+        c2.enviarMensagem("99997796", "0pa, tudo bom?", central);
+        c3.enviarMensagem("99997796", "0pa, tudo bom?", central);
+        c1.enviarMensagem("94432438", "0pa, tudo bom?", central);
+        c4.enviarMensagem("99243565", "0pa, tudo bom?", central);
+        
     }
     
 }
