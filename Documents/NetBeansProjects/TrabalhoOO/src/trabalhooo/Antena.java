@@ -37,25 +37,39 @@ public class Antena {
         return localizacao;
     }
     
+//    public void verificarDisponibilidadeAntena(Central central, Mensagem mensagem) throws InterruptedException{
+//        if(numTransmissoesEmAndamento < capacidadeAtendimentos){
+//            numTransmissoesEmAndamento++;
+//            solicitarCentral(central, mensagem);
+//            numTransmissoesEmAndamento--;
+//        }
+//    }
+    
     public void solicitarCentral(Central central, Mensagem mensagem) throws InterruptedException{
         if(numTransmissoesEmAndamento < capacidadeAtendimentos){
             numTransmissoesEmAndamento = numTransmissoesEmAndamento + 1;
             System.out.println("transmissoes em andamento: " + numTransmissoesEmAndamento);
-            sleep(tempoTransmissao);
-            System.out.println(nome + " enviando mensagem para central.");
-            central.transmitirMensagem(mensagem);
-            numTransmissoesEmAndamento = numTransmissoesEmAndamento - 1;
-        }
-        else if(inserirTransmissaoNaFila(mensagem)){
             System.out.println("tamanho da fila: " + mensagens.size());
             sleep(tempoTransmissao);
             System.out.println(nome + " enviando mensagem para central.");
             central.transmitirMensagem(mensagem);
+            numTransmissoesEmAndamento = numTransmissoesEmAndamento - 1;
+            esvaziarFila(central);
+        }
+        else if(inserirTransmissaoNaFila(mensagem)){
+            System.out.println("tamanho da fila: " + mensagens.size());
+            sleep(tempoTransmissao);
         }
         else{
             //mensagem de erro
         }
-            
+    }
+    
+    public void esvaziarFila(Central central) throws InterruptedException{
+        while(numTransmissoesEmAndamento < capacidadeAtendimentos  && !mensagens.isEmpty()){
+            solicitarCentral(central, mensagens.poll());
+            System.out.println("transmissoes em andamento: " + numTransmissoesEmAndamento);
+        }
     }
     
     public void enviarMensagem(Celular celularDesejado, String mensagem) throws InterruptedException{
