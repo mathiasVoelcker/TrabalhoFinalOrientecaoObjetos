@@ -15,18 +15,16 @@ import java.util.List;
 public class Celular {
     
     private String numero;
-    private int tempoMensagem;
     private int localizacao;
     private Antena antenaMaisProxima;
     private List<String> mensagens = new ArrayList<String>();
     
-    public Celular(String numero, int tempoMensagem, int localizacao){
+    public Celular(String numero, int localizacao){
         this.numero = numero;
-        this.tempoMensagem = tempoMensagem;
         this.localizacao = localizacao;
     }
     
-    public void enviarMensagem(String numCelularDesejado, Central central, String mensagem){
+    public void enviarMensagem(String numCelularDesejado, Central central, String mensagem) throws InterruptedException{
         procurarAntena(central.getAntenas());
         antenaMaisProxima.solicitarCentral(numCelularDesejado, central, mensagem);
     }

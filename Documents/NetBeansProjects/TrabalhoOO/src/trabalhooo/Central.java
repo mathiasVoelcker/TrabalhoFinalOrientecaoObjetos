@@ -22,7 +22,7 @@ public class Central {
         this.antenas = antenas;
     }
     
-    public void transmitirMensagem(String numCelularDesejado, String mensagem){
+    public void transmitirMensagem(String numCelularDesejado, String mensagem) throws InterruptedException{
         Celular celularDesejado = identificarCelular(numCelularDesejado); 
         Antena antenaMaisProxima = antenas.get(0);
         
@@ -35,7 +35,7 @@ public class Central {
     }
     
     public Celular identificarCelular(String numCelularDesejado){
-        Celular celularDesejado = new Celular("98745678", 5, 2); //linha de codigo so para funcionar a aplicacao, depois com a implementacao dos casos de erro essa linha sai
+        Celular celularDesejado = new Celular("98745678", 2); //linha de codigo so para funcionar a aplicacao, depois com a implementacao dos casos de erro essa linha sai
         for(Celular celular : celulares){
             if(celular.getNumero().equals(numCelularDesejado))
                 celularDesejado = celular;
