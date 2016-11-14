@@ -31,7 +31,7 @@ public class Central {
                 antenaMaisProxima = antena;
         }
         
-        antenaMaisProxima.enviarMensagem(celularDesejado, mensagem.getTexto());
+        antenaMaisProxima.enviarMensagem(celularDesejado, mensagem.getTexto(), mensagem.getNumCelularEnviando());
     }
     
     public Celular identificarCelular(String numCelularDesejado){

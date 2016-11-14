@@ -38,9 +38,9 @@ public class Celular {
         }
     }
     
-    public void receberMensagem(String mensagem){
+    public void receberMensagem(String mensagem, String numCelularEnviando){
         mensagens.add(mensagem);
-        System.out.println(this.getNumero() + ": " + mensagem);
+        System.out.println(this.getNumero() +  " recebeu a mensagem" + ": " + mensagem + " de " + numCelularEnviando);
     }
     
     public String getNumero(){

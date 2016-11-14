@@ -72,10 +72,10 @@ public class Antena {
         }
     }
     
-    public void enviarMensagem(Celular celularDesejado, String mensagem) throws InterruptedException{
+    public void enviarMensagem(Celular celularDesejado, String mensagem, String numCelularEnviando) throws InterruptedException{
         sleep(tempoTransmissao);
         System.out.println(nome + " enviando mensagem para celular");
-        celularDesejado.receberMensagem(mensagem);
+        celularDesejado.receberMensagem(mensagem, numCelularEnviando);
     }
     
     public boolean inserirTransmissaoNaFila(Mensagem mensagem){
