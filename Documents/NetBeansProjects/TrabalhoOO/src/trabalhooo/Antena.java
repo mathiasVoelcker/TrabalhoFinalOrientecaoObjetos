@@ -22,7 +22,7 @@ public class Antena {
     private int capacidadeFila;
     
     private Queue<Mensagem> mensagens = new LinkedList<Mensagem>();
-    private int numTransmissoesEmAndamento;
+    private int numTransmissoesEmAndamento = 0;
     
     
     public Antena(int localizacao, String nome, int capacidadeAtendimentos, int tempoTransmissao, int capacidadeFila){
@@ -38,14 +38,16 @@ public class Antena {
     }
     
     public void solicitarCentral(Central central, Mensagem mensagem) throws InterruptedException{
-        if(numTransmissoesEmAndamento <= capacidadeAtendimentos){
+        if(numTransmissoesEmAndamento < capacidadeAtendimentos){
             numTransmissoesEmAndamento = numTransmissoesEmAndamento + 1;
+            System.out.println("transmissoes em andamento: " + numTransmissoesEmAndamento);
             sleep(tempoTransmissao);
             System.out.println(nome + " enviando mensagem para central.");
             central.transmitirMensagem(mensagem);
             numTransmissoesEmAndamento = numTransmissoesEmAndamento - 1;
         }
         else if(inserirTransmissaoNaFila(mensagem)){
+            System.out.println("tamanho da fila: " + mensagens.size());
             sleep(tempoTransmissao);
             System.out.println(nome + " enviando mensagem para central.");
             central.transmitirMensagem(mensagem);

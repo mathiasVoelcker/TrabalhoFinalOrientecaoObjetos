@@ -5,8 +5,11 @@
  */
 package trabalhooo;
 
+import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -46,11 +49,78 @@ public class TrabalhoOO {
         
         Central central = new Central(celulares, antenas);
         
-        c1.enviarMensagem("99932438", "0pa, tudo bom?", central);
-        c2.enviarMensagem("99997796", "0pa, tudo bom?", central);
-        c3.enviarMensagem("99997796", "0pa, tudo bom?", central);
-        c1.enviarMensagem("94432438", "0pa, tudo bom?", central);
-        c4.enviarMensagem("99243565", "0pa, tudo bom?", central);
+        Thread thread1 = new Thread(){
+            public void run(){
+                try {
+                    c1.enviarMensagem("99932438", "0pa, tudo bom?", central);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        
+        Thread thread2 = new Thread(){
+            public void run(){
+                try {
+                    c1.enviarMensagem("99997796", "0pa, tudo bom?", central);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        
+        Thread thread3 = new Thread(){
+            public void run(){
+                try {
+                    c1.enviarMensagem("99997796", "0pa, tudo bom?", central);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        
+        Thread thread4 = new Thread(){
+            public void run(){
+                try {
+                    c1.enviarMensagem("94432438", "0pa, tudo bom?", central);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        
+        Thread thread5 = new Thread(){
+            public void run(){
+                try {
+                    c1.enviarMensagem("99243565", "0pa, tudo bom?", central);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        
+        Thread thread6 = new Thread(){
+            public void run(){
+                try {
+                    c1.enviarMensagem("99243565", "0pa, tudo bom?", central);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        
+        thread1.start();
+        sleep(100);
+        thread2.start();
+        sleep(100);
+        thread3.start();
+        sleep(100);
+        thread4.start();
+        sleep(100);
+        thread5.start();
+        sleep(100);
+        thread6.start();
+
         
     }
     
