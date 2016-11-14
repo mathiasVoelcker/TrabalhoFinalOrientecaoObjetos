@@ -24,7 +24,8 @@ public class Celular {
         this.localizacao = localizacao;
     }
     
-    public void enviarMensagem(String numCelularDesejado, Central central, String mensagem) throws InterruptedException{
+    public void enviarMensagem(String numCelularDesejado,  String mensagem, Central central) throws InterruptedException{
+        escreverMensagem(mensagem, numCelularDesejado);
         procurarAntena(central.getAntenas());
         antenaMaisProxima.solicitarCentral(numCelularDesejado, central, mensagem);
     }
@@ -48,6 +49,10 @@ public class Celular {
     
     public int getLocalizacao(){
         return localizacao;
+    }
+    
+    public Mensagem escreverMensagem(String texto, String numCelularDesejado){
+        return new Mensagem(texto, numCelularDesejado, numero);
     }
     
 }

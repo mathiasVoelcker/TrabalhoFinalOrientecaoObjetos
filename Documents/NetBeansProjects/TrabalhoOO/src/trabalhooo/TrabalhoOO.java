@@ -35,18 +35,18 @@ public class TrabalhoOO {
         Celular c6 = new Celular("99243565", 11);
         celulares.add(c6);
                 
-        Antena a1 = new Antena(4, "antena1", 4, 4000);
+        Antena a1 = new Antena(4, "antena1", 4, 4000, 5);
         antenas.add(a1);
-        Antena a2 = new Antena(13, "antena2", 3, 3000);
+        Antena a2 = new Antena(13, "antena2", 3, 3000, 4);
         antenas.add(a2);
-        Antena a3 = new Antena(1, "antena3", 3, 5000);
+        Antena a3 = new Antena(1, "antena3", 3, 5000, 5);
         antenas.add(a3);
-        Antena a4 = new Antena(8, "antena4", 6, 2000);
+        Antena a4 = new Antena(8, "antena4", 6, 2000, 6);
         antenas.add(a4);
         
         Central central = new Central(celulares, antenas);
         
-        c1.enviarMensagem("99997796", central, "0pa, tudo bom?");
+        c1.enviarMensagem("99997796", "0pa, tudo bom?", central);
     }
     
 }

@@ -18,7 +18,7 @@ public class Antena {
     private int capacidadeAtendimentos;
     private int tempoTransmissao;
     
-    public Antena(int localizacao, String nome, int capacidadeAtendimentos, int tempoTransmissao){
+    public Antena(int localizacao, String nome, int capacidadeAtendimentos, int tempoTransmissao, int capacidadeFila){
         this.localizacao = localizacao;
         this.nome = nome;
         this.capacidadeAtendimentos = capacidadeAtendimentos;
