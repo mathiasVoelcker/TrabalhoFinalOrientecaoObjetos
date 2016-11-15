@@ -7,6 +7,7 @@ package trabalhooo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  *
@@ -15,11 +16,16 @@ import java.util.List;
 public class Central {
     private List<Antena> antenas = new ArrayList<Antena>();
     private List<Celular> celulares = new ArrayList<Celular>();
+    private Stack pilhaMensagens = new Stack();
 
     
     public Central(List<Celular> celulares, List<Antena> antenas){
         this.celulares = celulares;
         this.antenas = antenas;
+    }
+    
+    public void empilharMensagem(Mensagem mensagem){
+        pilhaMensagens.push(mensagem);
     }
     
     public void transmitirMensagem(Mensagem mensagem) throws InterruptedException{

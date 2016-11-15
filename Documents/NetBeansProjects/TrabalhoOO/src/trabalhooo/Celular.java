@@ -51,6 +51,10 @@ public class Celular {
         return localizacao;
     }
     
+    public Antena getAntenaMaisProxima(){
+        return antenaMaisProxima;
+    }
+    
 //    public Mensagem escreverMensagem(String texto, String numCelularDesejado){
 //        return new Mensagem(texto, numCelularDesejado, numero);
 //    }

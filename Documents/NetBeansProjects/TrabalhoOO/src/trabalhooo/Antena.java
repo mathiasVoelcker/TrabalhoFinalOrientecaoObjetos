@@ -86,4 +86,8 @@ public class Antena {
         else
             return false;
     }
+    
+    public String getNome(){
+        return nome;
+    }
 }
