@@ -42,7 +42,7 @@ public class TrabalhoOO {
         antenas.add(a1);
         Antena a2 = new Antena(13, "antena2", 3, 3000, 4);
         antenas.add(a2);
-        Antena a3 = new Antena(1, "antena3", 3, 5000, 5);
+        Antena a3 = new Antena(1, "antena3", 3, 5000, 3);
         antenas.add(a3);
         Antena a4 = new Antena(8, "antena4", 6, 2000, 6);
         antenas.add(a4);

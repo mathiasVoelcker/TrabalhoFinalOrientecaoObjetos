@@ -45,7 +45,7 @@ public class Antena {
 //        }
 //    }
     
-    public void solicitarCentral(Central central, Mensagem mensagem) throws InterruptedException{
+    public void solicitarCentral(Central central, Mensagem mensagem, Celular celularEnviando) throws InterruptedException{
         if(numTransmissoesEmAndamento < capacidadeAtendimentos){
             numTransmissoesEmAndamento = numTransmissoesEmAndamento + 1;
             System.out.println("transmissoes em andamento: " + numTransmissoesEmAndamento);
@@ -54,20 +54,20 @@ public class Antena {
             System.out.println(nome + " enviando mensagem para central.");
             central.transmitirMensagem(mensagem);
             numTransmissoesEmAndamento = numTransmissoesEmAndamento - 1;
-            esvaziarFila(central);
+            esvaziarFila(central, celularEnviando);
         }
         else if(inserirTransmissaoNaFila(mensagem)){
             System.out.println("tamanho da fila: " + mensagens.size());
             sleep(tempoTransmissao);
         }
         else{
-            //mensagem de erro
+            enviarMensagem(celularEnviando, "Desculpe, mensagem nao enviada.", "Central" );
         }
     }
     
-    public void esvaziarFila(Central central) throws InterruptedException{
+    public void esvaziarFila(Central central, Celular celularEnviando) throws InterruptedException{
         while(numTransmissoesEmAndamento < capacidadeAtendimentos  && !mensagens.isEmpty()){
-            solicitarCentral(central, mensagens.poll());
+            solicitarCentral(central, mensagens.poll(), celularEnviando);
             System.out.println("transmissoes em andamento: " + numTransmissoesEmAndamento);
         }
     }

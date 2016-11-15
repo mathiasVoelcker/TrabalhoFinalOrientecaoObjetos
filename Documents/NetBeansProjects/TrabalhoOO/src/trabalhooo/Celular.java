@@ -25,9 +25,9 @@ public class Celular {
     }
     
     public void enviarMensagem(String numCelularDesejado,  String mensagemTexto, Central central) throws InterruptedException{
-        Mensagem mensagem = escreverMensagem(mensagemTexto, numCelularDesejado);
+        Mensagem mensagem = new Mensagem(mensagemTexto, numCelularDesejado, numero);
         procurarAntena(central.getAntenas());
-        antenaMaisProxima.solicitarCentral(central, mensagem);
+        antenaMaisProxima.solicitarCentral(central, mensagem, this);
     }
     
     public void procurarAntena(List<Antena> antenas){
@@ -51,9 +51,9 @@ public class Celular {
         return localizacao;
     }
     
-    public Mensagem escreverMensagem(String texto, String numCelularDesejado){
-        return new Mensagem(texto, numCelularDesejado, numero);
-    }
+//    public Mensagem escreverMensagem(String texto, String numCelularDesejado){
+//        return new Mensagem(texto, numCelularDesejado, numero);
+//    }
     
     public int distancia(int local1, int local2){
         return Math.abs(local1 - local2); //math.abs faz o modulo de tal numero, assim mesmo se a subtracao der valor negativo, vai retornar um valor positivo
