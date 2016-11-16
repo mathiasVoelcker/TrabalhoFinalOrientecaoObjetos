@@ -30,18 +30,12 @@ public class Central {
     
     public void transmitirMensagem(Mensagem mensagem) throws InterruptedException{
         Celular celularDesejado = identificarCelular(mensagem.getNumCelularDesejado()); 
-        Antena antenaMaisProxima = antenas.get(0);
-        
-        for(Antena antena : antenas){
-            if(distancia(celularDesejado, antena) < distancia(celularDesejado, antenaMaisProxima))
-                antenaMaisProxima = antena;
-        }
-        
+        Antena antenaMaisProxima = celularDesejado.getAntenaMaisProxima();
         antenaMaisProxima.enviarMensagem(celularDesejado, mensagem.getTexto(), mensagem.getNumCelularEnviando());
     }
     
     public Celular identificarCelular(String numCelularDesejado){
-        Celular celularDesejado = new Celular("98745678", 2); //linha de codigo so para funcionar a aplicacao, depois com a implementacao dos casos de erro essa linha sai
+        Celular celularDesejado = new Celular("98745678", new Antena("antena2", 3, 3000, 4)); //linha de codigo so para funcionar a aplicacao, depois com a implementacao dos casos de erro essa linha sai
         for(Celular celular : celulares){
             if(celular.getNumero().equals(numCelularDesejado))
                 celularDesejado = celular;
@@ -49,9 +43,7 @@ public class Central {
         return celularDesejado;
     }
     
-    public int distancia(Celular celular, Antena antena){
-        return Math.abs(celular.getLocalizacao() - antena.getLocalizacao()); //math.abs faz o modulo de tal numero, assim mesmo se a subtracao der valor negativo, vai retornar um valor positivo
-    }
+
     
     public List<Antena> getAntenas(){
         return antenas;

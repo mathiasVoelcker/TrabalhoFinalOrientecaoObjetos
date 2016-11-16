@@ -15,27 +15,17 @@ import java.util.List;
 public class Celular {
     
     private String numero;
-    private int localizacao;
     private Antena antenaMaisProxima;
     private List<String> mensagens = new ArrayList<String>();
     
-    public Celular(String numero, int localizacao){
+    public Celular(String numero, Antena antenaMaisProxima){
         this.numero = numero;
-        this.localizacao = localizacao;
+        this.antenaMaisProxima = antenaMaisProxima;
     }
     
     public void enviarMensagem(String numCelularDesejado,  String mensagemTexto, Central central) throws InterruptedException{
         Mensagem mensagem = new Mensagem(mensagemTexto, numCelularDesejado, numero);
-        procurarAntena(central.getAntenas());
         antenaMaisProxima.solicitarCentral(central, mensagem, this);
-    }
-    
-    public void procurarAntena(List<Antena> antenas){
-        antenaMaisProxima = antenas.get(0);
-        for(Antena antena: antenas){
-            if(distancia(antena.getLocalizacao(), localizacao) < distancia(antenaMaisProxima.getLocalizacao(), localizacao))
-                antenaMaisProxima = antena;
-        }
     }
     
     public void receberMensagem(String mensagem, String numCelularEnviando){
@@ -45,10 +35,6 @@ public class Celular {
     
     public String getNumero(){
         return numero;
-    }
-    
-    public int getLocalizacao(){
-        return localizacao;
     }
     
     public Antena getAntenaMaisProxima(){

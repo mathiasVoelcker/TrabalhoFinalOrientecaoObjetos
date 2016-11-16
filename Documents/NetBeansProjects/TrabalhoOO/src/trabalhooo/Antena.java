@@ -15,7 +15,6 @@ import java.util.Queue;
  */
 public class Antena {
     
-    private int localizacao;
     private String nome;
     private int capacidadeAtendimentos;
     private int tempoTransmissao;
@@ -25,17 +24,13 @@ public class Antena {
     private int numTransmissoesEmAndamento = 0;
     
     
-    public Antena(int localizacao, String nome, int capacidadeAtendimentos, int tempoTransmissao, int capacidadeFila){
-        this.localizacao = localizacao;
+    public Antena(String nome, int capacidadeAtendimentos, int tempoTransmissao, int capacidadeFila){
         this.nome = nome;
         this.capacidadeAtendimentos = capacidadeAtendimentos;
         this.tempoTransmissao = tempoTransmissao;
         this.capacidadeFila = capacidadeFila;
     }
     
-    public int getLocalizacao(){
-        return localizacao;
-    }
     
 //    public void verificarDisponibilidadeAntena(Central central, Mensagem mensagem) throws InterruptedException{
 //        if(numTransmissoesEmAndamento < capacidadeAtendimentos){
