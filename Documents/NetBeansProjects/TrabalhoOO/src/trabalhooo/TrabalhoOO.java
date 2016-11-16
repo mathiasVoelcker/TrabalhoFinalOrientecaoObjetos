@@ -23,7 +23,9 @@ public class TrabalhoOO {
     public static void main(String[] args) throws InterruptedException {
         List<Celular> celulares = new ArrayList<Celular>();
         List<Antena> antenas = new ArrayList<Antena>();
-        int tempoMensagem = 5000;
+        
+        Cronometro cronometro = new Cronometro();
+        cronometro.iniciaCronometro();
         
         Celular c1 = new Celular("99994438", 2);
         celulares.add(c1);
@@ -48,6 +50,7 @@ public class TrabalhoOO {
         antenas.add(a4);
         
         Central central = new Central(celulares, antenas);
+        
         
         Thread thread1 = new Thread(){
             public void run(){
@@ -119,6 +122,17 @@ public class TrabalhoOO {
             }
         };
         
+        Thread thread8 = new Thread(){
+            public void run(){
+                while(cronometro.getCurrentSegundo() < 30){
+                    if(cronometro.getCurrentSegundo() == 5 && cronometro.getCurrentSegundo() != 0)
+                        System.out.println(cronometro.getCurrentSegundo() + "=================================");
+                        
+                }
+            }
+        };
+        
+        thread8.start();
         thread1.start();
         sleep(100);
         thread2.start();
@@ -132,8 +146,7 @@ public class TrabalhoOO {
         thread6.start();
         sleep(100);
         thread7.start();
-
-        
     }
     
+//
 }

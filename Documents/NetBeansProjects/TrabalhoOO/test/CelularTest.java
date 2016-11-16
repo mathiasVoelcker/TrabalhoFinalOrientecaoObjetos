@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import trabalhooo.Antena;
 import trabalhooo.Celular;
-//import static org.junit.Assert.*;
-//import org.junit.Before;
-//import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
 
 
@@ -21,12 +21,12 @@ import trabalhooo.Celular;
  */
 public class CelularTest {
 //    
-//    @Test
-//    public void procurarAntenaTest(){
-//        Celular celular = new Celular("97847382", 4);
-//        celular.procurarAntena(criarListaAntenas());
-//        assertEquals("antena2", celular.getAntenaMaisProxima().getNome(), 0.1);
-//    }
+    @Test
+    public void procurarAntenaTest(){
+        Celular celular = new Celular("97847382", 4);
+        celular.procurarAntena(criarListaAntenas());
+        assertEquals("antena2", celular.getAntenaMaisProxima().getNome(), 0.1);
+    }
     
     public List<Antena> criarListaAntenas(){
         List<Antena> antenas = new ArrayList<Antena>();
