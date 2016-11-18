@@ -31,7 +31,7 @@ public class Central {
     public void transmitirMensagem(Mensagem mensagem) throws InterruptedException{
         Celular celularDesejado = identificarCelular(mensagem.getNumCelularDesejado()); 
         Antena antenaMaisProxima = celularDesejado.getAntenaMaisProxima();
-        antenaMaisProxima.enviarMensagem(celularDesejado, mensagem.getTexto(), mensagem.getNumCelularEnviando());
+        antenaMaisProxima.enviarMensagem(celularDesejado, mensagem);
     }
     
     public Celular identificarCelular(String numCelularDesejado){
@@ -47,6 +47,10 @@ public class Central {
     
     public List<Antena> getAntenas(){
         return antenas;
+    }
+    
+    public Celular getCelular(int i){
+        return celulares.get(i);
     }
     
 }

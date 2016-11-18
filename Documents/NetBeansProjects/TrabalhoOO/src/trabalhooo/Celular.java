@@ -16,7 +16,7 @@ public class Celular {
     
     private String numero;
     private Antena antenaMaisProxima;
-    private List<String> mensagens = new ArrayList<String>();
+    private List<Mensagem> mensagens = new ArrayList<Mensagem>();
     
     public Celular(String numero, Antena antenaMaisProxima){
         this.numero = numero;
@@ -28,9 +28,9 @@ public class Celular {
         antenaMaisProxima.solicitarCentral(central, mensagem, this);
     }
     
-    public void receberMensagem(String mensagem, String numCelularEnviando){
+    public void receberMensagem(Mensagem mensagem){
         mensagens.add(mensagem);
-        System.out.println(this.getNumero() +  " recebeu a mensagem" + ": " + mensagem + " de " + numCelularEnviando);
+        System.out.println(this.getNumero() +  " recebeu a mensagem" + ": " + mensagem.getTexto() + " de " + mensagem.getNumCelularEnviando());
     }
     
     public String getNumero(){
@@ -40,13 +40,9 @@ public class Celular {
     public Antena getAntenaMaisProxima(){
         return antenaMaisProxima;
     }
-    
-//    public Mensagem escreverMensagem(String texto, String numCelularDesejado){
-//        return new Mensagem(texto, numCelularDesejado, numero);
-//    }
-    
-    public int distancia(int local1, int local2){
-        return Math.abs(local1 - local2); //math.abs faz o modulo de tal numero, assim mesmo se a subtracao der valor negativo, vai retornar um valor positivo
+        
+    public Mensagem getUltimaMensagem(){
+        return mensagens.get((mensagens.size())-1);
     }
     
 }

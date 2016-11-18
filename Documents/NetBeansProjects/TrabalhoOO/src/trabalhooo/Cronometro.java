@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,14 +22,11 @@ public class Cronometro {
     private int currentSegundo = 0;
     private int velocidade = 1000;
     
-    public void iniciaCronometro(){
+    public void iniciaCronometro(Central central){
         ActionListener action = new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 currentSegundo++;
-                if(currentSegundo == 2){
-                    System.out.println(currentSegundo);
-                }
-                
+                System.out.println(currentSegundo);                
                 
             }
         }; 

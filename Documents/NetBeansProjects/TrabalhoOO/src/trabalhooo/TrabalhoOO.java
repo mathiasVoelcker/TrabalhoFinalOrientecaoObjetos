@@ -25,7 +25,7 @@ public class TrabalhoOO {
         List<Antena> antenas = new ArrayList<Antena>();
         
         Cronometro cronometro = new Cronometro();
-        cronometro.iniciaCronometro();
+        
         
         
                 
@@ -52,7 +52,10 @@ public class TrabalhoOO {
         celulares.add(c6);
         
         Central central = new Central(celulares, antenas);
-        
+        c1.enviarMensagem("99932438", "0pa, tudo bom1?", central);
+        System.out.println("puts");
+        cronometro.iniciaCronometro(central);
+        System.out.println("puts");
         
         Thread thread1 = new Thread(){
             public void run(){
@@ -148,7 +151,7 @@ public class TrabalhoOO {
         thread6.start();
         sleep(100);
         thread7.start();
-    }
+    }  
     
 //
 }

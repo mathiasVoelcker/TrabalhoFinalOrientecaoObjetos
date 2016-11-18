@@ -5,6 +5,7 @@
  */
 package trabalhooo;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -23,15 +24,16 @@ public class CelularTest {
     public CelularTest() {
     }
 
-
     /**
      * Test of enviarMensagem method, of class Celular.
      */
     @Test
     public void testEnviarMensagem() throws Exception {
         System.out.println("enviarMensagem");
+
         List<Celular> celulares = new ArrayList<Celular>();
         List<Antena> antenas = new ArrayList<Antena>();
+
         Antena a1 = new Antena("antena1", 4, 4000, 5);
         antenas.add(a1);
         Celular c1 = new Celular("99994438", a1);
@@ -45,7 +47,7 @@ public class CelularTest {
         
         c1.enviarMensagem(numCelularDesejado, mensagemTexto, central);
         // TODO review the generated test code and remove the default call to fail.
-        assertEquals("Mensagem de teste1", c2.getUltimaMensagem());
+        assertEquals("Mensagem de teste1", c2.getUltimaMensagem().getTexto());
     }
 
 
@@ -56,30 +58,34 @@ public class CelularTest {
     @Test
     public void testReceberMensagem() {
         System.out.println("receberMensagem");
-        String mensagem = "Mensagem de teste2";
+        String texto = "Mensagem de teste2";
         String numCelularEnviando = "99932543";
+        
+        
         Celular c1 = new Celular("99994438", new Antena("antena1", 4, 4000, 5));
-        c1.receberMensagem(mensagem, numCelularEnviando);
+        Mensagem mensagem = new Mensagem(texto, c1.getNumero(), numCelularEnviando);
+        c1.receberMensagem(mensagem);
         // TODO review the generated test code and remove the default call to fail.
         assertEquals(mensagem, c1.getUltimaMensagem());
     }
+
 //
-//    /**
-//     * Test of getNumero method, of class Celular.
-//     */
-//    @Test
-//    public void testGetNumero() {
-//        System.out.println("getNumero");
-//        Celular instance = null;
-//        String expResult = "";
-//        String result = instance.getNumero();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
+    /**
+     * Test of getNumero method, of class Celular.
+     */
+    @Test
+    public void testGetNumero() {
+        System.out.println("getNumero");
+        String numero = "99943368";
+        Celular c1 = new Celular(numero, new Antena("antena1", 4, 4000, 5));
+        String result = c1.getNumero();
+        assertEquals(result, numero);
+        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
-//    }
+    }
 //
 //
-//
+
 //    /**
 //     * Test of getAntenaMaisProxima method, of class Celular.
 //     */
@@ -96,4 +102,5 @@ public class CelularTest {
 
 
 }
+
 
