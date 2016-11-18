@@ -84,21 +84,21 @@ public class CelularTest {
 //        fail("The test case is a prototype.");
     }
 //
-//
-
-//    /**
-//     * Test of getAntenaMaisProxima method, of class Celular.
-//     */
-//    @Test
-//    public void testGetAntenaMaisProxima() {
-//        System.out.println("getAntenaMaisProxima");
-//        Celular instance = null;
-//        Antena expResult = null;
-//        Antena result = instance.getAntenaMaisProxima();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
+  /**
+     * Test of getNumero method, of class Celular.
+     */
+    @Test
+    public void testGetAntenaMaisProxima() {
+        System.out.println("getAntenaMaisProxima");
+        Antena antena = new Antena("antena1", 4, 4000, 5);
+        Celular c1 = new Celular("99943368", antena);
+        Antena result = c1.getAntenaMaisProxima();
+        assertEquals(result, antena);
+        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
-//    }
+    }
+
+
 
 
 }
