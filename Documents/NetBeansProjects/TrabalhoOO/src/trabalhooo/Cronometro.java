@@ -22,7 +22,7 @@ public class Cronometro {
     private int currentSegundo = 0;
     private int velocidade = 1000;
     
-    public void iniciaCronometro(Central central){
+    public void iniciarCronometro(){
         ActionListener action = new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 currentSegundo++;

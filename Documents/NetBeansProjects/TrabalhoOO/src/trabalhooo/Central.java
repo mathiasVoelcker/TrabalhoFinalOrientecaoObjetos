@@ -5,10 +5,13 @@
  */
 package trabalhooo;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import javax.swing.Timer;
 
 /**
  *
@@ -33,7 +36,7 @@ public class Central {
             transmissaoEmAndamento = true;
             System.out.println("TRANSMISSOES NA CENTRAL: " + transmissaoEmAndamento);
             sleep(8);
-            antenaMaisProxima.enviarMensagem(celularDesejado, mensagem);
+            antenaMaisProxima.enviarMensagem(celularDesejado, mensagem, this);
             transmissaoEmAndamento = false;
             if(!pilhaMensagens.isEmpty()){
                 transmitirMensagem((Mensagem) pilhaMensagens.pop());
@@ -64,4 +67,19 @@ public class Central {
     public Stack getPilha(){
         return pilhaMensagens;
     }
+    
+    
+    Cronometro cronometro = new Cronometro();
+    
+    public int getSegundosCronometro(){
+        return cronometro.getCurrentSegundo();
+    }
+    
+    public void iniciarCronometro(){
+        cronometro.iniciarCronometro();
+    }
+    
+
+    
 }
+

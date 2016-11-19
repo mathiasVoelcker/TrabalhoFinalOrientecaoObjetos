@@ -25,11 +25,19 @@ public class Celular {
     
     public void enviarMensagem(String numCelularDesejado,  String mensagemTexto, Central central) throws InterruptedException{
         Mensagem mensagem = new Mensagem(mensagemTexto, numCelularDesejado, numero);
+        mensagem.setTempoDeEnvio(central.getSegundosCronometro());
         antenaMaisProxima.solicitarCentral(central, mensagem, this);
     }
     
-    public void receberMensagem(Mensagem mensagem){
+    public void receberMensagem(Mensagem mensagem, Central central){
         mensagens.add(mensagem);
+        if(central != null){
+            mensagem.setTempoDeEntrega(central.getSegundosCronometro());
+            System.out.println("================================================================================");
+            System.out.println("Tempo para mensagem chegar: " + mensagem.getTempoDeEntrega());
+            System.out.println("================================================================================");
+
+        }
         System.out.println(this.getNumero() +  " recebeu a mensagem" + ": " + mensagem.getTexto() + " de " + mensagem.getNumCelularEnviando());
     }
     

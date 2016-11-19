@@ -14,6 +14,8 @@ public class Mensagem {
     private String texto;
     private String numCelularDesejado;
     private String numCelularEnviando;
+    private int tempoDoEnvio;
+    private int tempoDeEntrega;
     
     public Mensagem(String texto, String numCelularDesejado, String numCelularEnviando){
         this.texto = texto;
@@ -33,4 +35,19 @@ public class Mensagem {
         return numCelularEnviando;
     }
     
+    public int getTempoDoEnvio(){
+        return tempoDoEnvio;
+    }
+    
+    public void setTempoDeEnvio(int segundos){
+        tempoDoEnvio = segundos;
+    }
+    
+    public void setTempoDeEntrega(int segundos){
+        tempoDeEntrega = segundos - tempoDoEnvio;
+    }
+    
+    public int getTempoDeEntrega(){
+        return tempoDeEntrega;
+    }
 }

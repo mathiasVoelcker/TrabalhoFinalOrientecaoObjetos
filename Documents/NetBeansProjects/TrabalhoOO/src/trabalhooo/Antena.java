@@ -56,8 +56,8 @@ public class Antena {
             sleep(tempoTransmissao);
         }
         else{
-            Mensagem mensagemDeErro = new Mensagem("Desculpe, mensagem nao enviada.", celularEnviando.getNumero(), "Central" );
-            enviarMensagem(celularEnviando, mensagemDeErro);
+            Mensagem mensagemDeErro = new Mensagem("Desculpe, mensagem nao enviada.", celularEnviando.getNumero(), "Erro");
+            enviarMensagem(celularEnviando, mensagemDeErro, null);
         }
     }
     
@@ -68,10 +68,10 @@ public class Antena {
         }
     }
     
-    public void enviarMensagem(Celular celularDesejado, Mensagem mensagem) throws InterruptedException{
+    public void enviarMensagem(Celular celularDesejado, Mensagem mensagem, Central central) throws InterruptedException{
         sleep(tempoTransmissao);
         System.out.println(nome + " enviando mensagem para celular");
-        celularDesejado.receberMensagem(mensagem);
+        celularDesejado.receberMensagem(mensagem, central);
     }
     
     public boolean inserirTransmissaoNaFila(Mensagem mensagem){

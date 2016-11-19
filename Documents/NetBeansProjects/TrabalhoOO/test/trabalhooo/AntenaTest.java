@@ -94,18 +94,13 @@ public class AntenaTest {
     @Test
     public void testEnviarMensagem() throws Exception {
         System.out.println("enviarMensagem");
-        List<Celular> celulares = new ArrayList<Celular>();
-        List<Antena> antenas = new ArrayList<Antena>();
         
         Antena a1 = new Antena("antena1", 4, 4000, 5);
-        antenas.add(a1);
         Celular c1 = new Celular("99994438", a1);
-        celulares.add(c1);
         Celular c2 = new Celular("99932438", a1);
-        celulares.add(c2);
         Mensagem mensagem = new Mensagem("testeAntena1", c2.getNumero(), c1.getNumero());
         
-        a1.enviarMensagem(c1, mensagem);
+        a1.enviarMensagem(c1, mensagem, null);
         assertEquals(mensagem, c1.getUltimaMensagem());
     }
 //

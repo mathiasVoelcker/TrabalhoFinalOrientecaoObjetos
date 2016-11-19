@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Scanner;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Aplicacao {
      */
     public static void main(String[] args) throws InterruptedException {
         
-        Cronometro cronometro = new Cronometro();
+        Scanner entrada = new Scanner(System.in);
         
         //========================DEVE SER LIDO DE UM ARQUIVO TEXTO==============================================
         List<Celular> celulares = new ArrayList<Celular>();
@@ -52,15 +53,6 @@ public class Aplicacao {
         
         Central central = new Central(celulares, antenas);
         //=======================================================================================================
-        
-        cronometro.iniciaCronometro(central);
-        System.out.println("Seja bem vindo!");
-        System.out.println("Por favor, insira o numero do comando desejado");
-        System.out.println("1 - Cadastrar um celular");
-        System.out.println("2 - Enviar uma mensagem");
-        System.out.println("3 - Imprimir dados da Central");
-        System.out.println("4 - Imprimir dados das Antenas");
-        System.out.println("5 - Imprimir dados dos Celulares");
         
         
         //=====================================DEVE SER LIDO DE UM ARQUIVO TEXTO==========================================
@@ -134,17 +126,7 @@ public class Aplicacao {
             }
         };
         
-        Thread thread8 = new Thread(){
-            public void run(){
-                while(cronometro.getCurrentSegundo() < 30){
-                    if(cronometro.getCurrentSegundo() == 5 && cronometro.getCurrentSegundo() != 0)
-                        System.out.println(cronometro.getCurrentSegundo() + "=================================");
-                        
-                }
-            }
-        };
-        
-        thread8.start();
+        central.iniciarCronometro();
         thread1.start();
         sleep(1000);
         thread2.start();
@@ -160,6 +142,17 @@ public class Aplicacao {
         thread7.start();
         
         //=====================================================================================
+        
+        
+//        System.out.println("Seja bem vindo!");
+//        System.out.println("Por favor, insira o numero do comando desejado");
+//        System.out.println("1 - Listar parametros da simulacao");
+//        System.out.println("2 - Mostrar trace de ocorrencia de eventos");
+//        System.out.println("3 - Mostrar Resultado da Simulacao");
+//        System.out.println("4 - Imprimir dados dos Celulares");
+//        
+//        String texto = entrada.next();
+//        System.out.println(texto);
     }  
     
 //

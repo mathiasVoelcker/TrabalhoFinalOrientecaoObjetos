@@ -64,7 +64,7 @@ public class CelularTest {
         
         Celular c1 = new Celular("99994438", new Antena("antena1", 4, 4000, 5));
         Mensagem mensagem = new Mensagem(texto, c1.getNumero(), numCelularEnviando);
-        c1.receberMensagem(mensagem);
+        c1.receberMensagem(mensagem, null);
         // TODO review the generated test code and remove the default call to fail.
         assertEquals(mensagem, c1.getUltimaMensagem());
     }
