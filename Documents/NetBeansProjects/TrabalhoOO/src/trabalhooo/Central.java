@@ -61,8 +61,7 @@ public class Central {
         return antenas;
     }
     
-    public Celular getCelular(int i){
-        return celulares.get(i);
+    public Stack getPilha(){
+        return pilhaMensagens;
     }
-    
 }
