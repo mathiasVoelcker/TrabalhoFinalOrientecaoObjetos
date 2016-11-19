@@ -86,4 +86,8 @@ public class Antena {
     public String getNome(){
         return nome;
     }
+    
+    public Queue<Mensagem> getMensagens(){
+        return mensagens;
+    }
 }

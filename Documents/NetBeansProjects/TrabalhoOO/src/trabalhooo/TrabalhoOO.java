@@ -52,10 +52,7 @@ public class TrabalhoOO {
         celulares.add(c6);
         
         Central central = new Central(celulares, antenas);
-        c1.enviarMensagem("99932438", "0pa, tudo bom1?", central);
-        System.out.println("puts");
         cronometro.iniciaCronometro(central);
-        System.out.println("puts");
         
         Thread thread1 = new Thread(){
             public void run(){
@@ -139,17 +136,17 @@ public class TrabalhoOO {
         
         thread8.start();
         thread1.start();
-        sleep(100);
+        sleep(1000);
         thread2.start();
-        sleep(100);
+        sleep(1000);
         thread3.start();
-        sleep(100);
+        sleep(1000);
         thread4.start();
-        sleep(100);
+        sleep(1000);
         thread5.start();
-        sleep(100);
+        sleep(1000);
         thread6.start();
-        sleep(100);
+        sleep(1000);
         thread7.start();
     }  
     
