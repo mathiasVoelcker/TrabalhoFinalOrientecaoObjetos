@@ -15,19 +15,18 @@ import java.util.logging.Logger;
  *
  * @author user
  */
-public class TrabalhoOO {
+public class Aplicacao {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        List<Celular> celulares = new ArrayList<Celular>();
-        List<Antena> antenas = new ArrayList<Antena>();
         
         Cronometro cronometro = new Cronometro();
         
-        
-        
+        //========================DEVE SER LIDO DE UM ARQUIVO TEXTO==============================================
+        List<Celular> celulares = new ArrayList<Celular>();
+        List<Antena> antenas = new ArrayList<Antena>();
                 
         Antena a1 = new Antena("antena1", 4, 4000, 5);
         antenas.add(a1);
@@ -52,14 +51,25 @@ public class TrabalhoOO {
         celulares.add(c6);
         
         Central central = new Central(celulares, antenas);
-        cronometro.iniciaCronometro(central);
+        //=======================================================================================================
         
+        cronometro.iniciaCronometro(central);
+        System.out.println("Seja bem vindo!");
+        System.out.println("Por favor, insira o numero do comando desejado");
+        System.out.println("1 - Cadastrar um celular");
+        System.out.println("2 - Enviar uma mensagem");
+        System.out.println("3 - Imprimir dados da Central");
+        System.out.println("4 - Imprimir dados das Antenas");
+        System.out.println("5 - Imprimir dados dos Celulares");
+        
+        
+        //=====================================DEVE SER LIDO DE UM ARQUIVO TEXTO==========================================
         Thread thread1 = new Thread(){
             public void run(){
                 try {
                     c1.enviarMensagem("99932438", "0pa, tudo bom1?", central);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
@@ -69,7 +79,7 @@ public class TrabalhoOO {
                 try {
                     c1.enviarMensagem("99997796", "0pa, tudo bom2?", central);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
@@ -79,7 +89,7 @@ public class TrabalhoOO {
                 try {
                     c1.enviarMensagem("99997796", "0pa, tudo bom3?", central);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
@@ -89,7 +99,7 @@ public class TrabalhoOO {
                 try {
                     c1.enviarMensagem("94432438", "0pa, tudo bom4?", central);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
@@ -99,7 +109,7 @@ public class TrabalhoOO {
                 try {
                     c1.enviarMensagem("99243565", "0pa, tudo bom5?", central);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
@@ -109,7 +119,7 @@ public class TrabalhoOO {
                 try {
                     c1.enviarMensagem("99243565", "0pa, tudo bom6?", central);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
@@ -119,7 +129,7 @@ public class TrabalhoOO {
                 try {
                     c1.enviarMensagem("99243565", "0pa, tudo bom7?", central);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TrabalhoOO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
@@ -148,6 +158,8 @@ public class TrabalhoOO {
         thread6.start();
         sleep(1000);
         thread7.start();
+        
+        //=====================================================================================
     }  
     
 //
