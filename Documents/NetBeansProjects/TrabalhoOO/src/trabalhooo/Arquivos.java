@@ -53,6 +53,38 @@ public class Arquivos {
                return null; 
     }
     
+    
+    public void leituraArquivoEventos(List<Celular> celulares){
+        BufferedReader br = null;
+
+		try {
+
+			String linha = null;
+
+			br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\testing.txt"));
+
+			while ((linha = br.readLine()) != null) {
+                                Scanner sc = new Scanner(linha).useDelimiter(";");
+				String antenaNome = sc.next();
+                                int capacidadeAntena = Integer.parseInt(sc.next());
+                                int tempoTransmissao = Integer.parseInt(sc.next());
+                                int capacidadeFila = Integer.parseInt(sc.next());
+//                                System.out.println(antenaNome + " " + capacidadeAntena + " "+tempoTransmissao + " " + capacidadeFila);
+                                Antena a1 = new Antena(antenaNome, capacidadeAntena, tempoTransmissao, capacidadeFila);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null)br.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+                
+    }
+            
     public void escritaArquivo(){
         try {
 

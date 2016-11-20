@@ -26,6 +26,7 @@ public class Aplicacao {
         //========================DEVE SER LIDO DE UM ARQUIVO TEXTO==============================================
         List<Celular> celulares = new ArrayList<Celular>();
         List<Antena> antenas = new ArrayList<Antena>();
+        Map<String, Antena> = mapAntenas = new HashMap<Integer, String>();
                 
         Arquivos a = new Arquivos();
         Antena a1 = a.leituraArquivo();
