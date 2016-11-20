@@ -54,21 +54,23 @@ public class Arquivos {
     }
     
     
-    public void leituraArquivoEventos(List<Celular> celulares){
+    public void leituraArquivoEventos(Map<String, Celular> mapCelular, Map<String, Central> mapCentral) throws InterruptedException{
         BufferedReader br = null;
 
 		try {
 
 			String linha = null;
 
-			br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\testing.txt"));
+			br = new BufferedReader(new FileReader("D:\\Tempt\\eventos.txt"));
 
 			while ((linha = br.readLine()) != null) {
                                 Scanner sc = new Scanner(linha).useDelimiter(";");
-				String antenaNome = sc.next();
-                                int capacidadeAntena = Integer.parseInt(sc.next());
-                                int tempoTransmissao = Integer.parseInt(sc.next());
-                                int capacidadeFila = Integer.parseInt(sc.next());
+				String numCelularEnviando = sc.next();
+                                String numCelularDesejado = sc.next();
+                                String mensagemTexto = sc.next();
+                                String nomeCentral = sc.next();
+                               
+                                mapCelular.get(numCelularEnviando).enviarMensagem(numCelularDesejado, mensagemTexto,  mapCentral.get(nomeCentral));
 //                                System.out.println(antenaNome + " " + capacidadeAntena + " "+tempoTransmissao + " " + capacidadeFila);
                                 
 			}

@@ -49,8 +49,9 @@ public class Aplicacao {
 //        Antena a4 = new Antena("antena4", 6, 2000, 6);
 //        antenas.add(a4);
 //        
-        Celular c1 = new Celular("99994438", a1);
+        Celular c1 = new Celular("99943338", a1);
         mapCelulares.put("99994438", c1);
+        
 //        Celular c2 = new Celular("99932438", a1);
 //        celulares.add(c2);
 //        Celular c3 = new Celular("94432438", a2);
@@ -64,6 +65,7 @@ public class Aplicacao {
         
         Central central = new Central(mapCelulares, mapAntenas, 4);
         mapCentral.put("Central", central);
+        a.leituraArquivoEventos(mapCelulares, mapCentral);
         //=======================================================================================================
         
         
@@ -71,7 +73,7 @@ public class Aplicacao {
 //        Thread thread1 = new Thread(){
 //            public void run(){
 //                try {
-                    c1.enviarMensagem("99994438", "0pa, tudo bom1?", central);
+//                    c1.enviarMensagem("99994438", "0pa, tudo bom1?", central);
 //                } catch (InterruptedException ex) {
 //                    Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
 //                }
