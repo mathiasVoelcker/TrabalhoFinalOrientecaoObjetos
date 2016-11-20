@@ -9,7 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 import javax.swing.Timer;
 
@@ -18,8 +20,8 @@ import javax.swing.Timer;
  * @author user
  */
 public class Central {
-    private List<Antena> antenas = new ArrayList<Antena>();
-    private List<Celular> celulares = new ArrayList<Celular>();
+    private Map<String, Antena> mapAntenas = new HashMap<String, Antena>();
+    private Map<String, Celular> mapCelulares = new HashMap<String, Celular>();
     private List<Mensagem> mensagens = new ArrayList<Mensagem>();
     private List<Mensagem> mensagensDeErro = new ArrayList<Mensagem>();
     private List<Mensagem> mensagensNaoEnviadas = new ArrayList<Mensagem>();
@@ -28,9 +30,9 @@ public class Central {
     private int tempoDeTransmissao;
 
     
-    public Central(List<Celular> celulares, List<Antena> antenas, int tempoDeTransmissao){
-        this.celulares = celulares;
-        this.antenas = antenas;
+    public Central(Map<String, Celular> celulares, Map<String, Antena> antenas, int tempoDeTransmissao){
+        this.mapCelulares = celulares;
+        this.mapAntenas = antenas;
         this.tempoDeTransmissao = tempoDeTransmissao;
     }
     
@@ -57,18 +59,19 @@ public class Central {
     }
     
     public Celular identificarCelular(String numCelularDesejado){
-        Celular celularDesejado = new Celular("98745678", new Antena("antena2", 3, 3000, 4)); //linha de codigo so para funcionar a aplicacao, depois com a implementacao dos casos de erro essa linha sai
-        for(Celular celular : celulares){
-            if(celular.getNumero().equals(numCelularDesejado))
-                celularDesejado = celular;
-        }
+//        Celular celularDesejado = new Celular("98745678", new Antena("antena2", 3, 3000, 4)); //linha de codigo so para funcionar a aplicacao, depois com a implementacao dos casos de erro essa linha sai
+        Celular celularDesejado = mapCelulares.get(numCelularDesejado);
+//        for(Celular celular : celulares){
+//            if(celular.getNumero().equals(numCelularDesejado))
+//                celularDesejado = celular;
+//        }
         return celularDesejado;
     }
     
 
     
-    public List<Antena> getAntenas(){
-        return antenas;
+    public Map<String, Antena> getMapAntenas(){
+        return mapAntenas;
     }
     
     public Stack getPilha(){
