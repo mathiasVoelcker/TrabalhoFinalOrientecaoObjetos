@@ -70,7 +70,7 @@ public class Arquivos {
                                 int tempoTransmissao = Integer.parseInt(sc.next());
                                 int capacidadeFila = Integer.parseInt(sc.next());
 //                                System.out.println(antenaNome + " " + capacidadeAntena + " "+tempoTransmissao + " " + capacidadeFila);
-                                Antena a1 = new Antena(antenaNome, capacidadeAntena, tempoTransmissao, capacidadeFila);
+                                
 			}
 
 		} catch (IOException e) {
