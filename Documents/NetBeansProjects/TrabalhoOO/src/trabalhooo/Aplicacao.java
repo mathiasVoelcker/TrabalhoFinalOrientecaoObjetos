@@ -22,9 +22,7 @@ public class Aplicacao {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        
-        Scanner entrada = new Scanner(System.in);
-        
+       
         //========================DEVE SER LIDO DE UM ARQUIVO TEXTO==============================================
         List<Celular> celulares = new ArrayList<Celular>();
         List<Antena> antenas = new ArrayList<Antena>();
@@ -142,6 +140,7 @@ public class Aplicacao {
                     c1.enviarMensagem("99994438", "0pa, tudo bom7?", central);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
+                    interfaceComUsuario(central);
                 }
             }
         };
@@ -168,16 +167,55 @@ public class Aplicacao {
         //=====================================================================================
         
         
-//        System.out.println("Seja bem vindo!");
-//        System.out.println("Por favor, insira o numero do comando desejado");
-//        System.out.println("1 - Listar parametros da simulacao");
-//        System.out.println("2 - Mostrar trace de ocorrencia de eventos");
-//        System.out.println("3 - Mostrar Resultado da Simulacao");
-//        System.out.println("4 - Imprimir dados dos Celulares");
-//        
-//        String texto = entrada.next();
-//        System.out.println(texto);
+        
     }  
     
+    public static void interfaceComUsuario(Central central){
+        Scanner entrada = new Scanner(System.in);
+        
+        System.out.println("Seja bem vindo!");
+        System.out.println("Por favor, insira o numero do comando desejado");
+        System.out.println("1 - Rodar Simulacao");
+        System.out.println("2 - Imprimir dados dos Celulares");
+        System.out.println("3 - Imprimir dados das Antenas");
+        System.out.println("4 - Imprimir dados da Central");
+        
+        String texto = entrada.next();
+        System.out.println(texto);
+        
+        switch(texto){
+            case "1": break;
+            case "2": imprimirDadosCelulares();
+            break;
+            case "3": imprimirDadosAntenas();
+            break;
+            case "4": imprimirDadosCentral();
+            break;  
+        }
+    }
+    
+    public static void listarParametros(){
+        
+    }
+    
+    public static void mostrarEventos(){
+        
+    }
+    
+    public static void mostrarResultadoSimulacao(){
+        
+    }
+    
+    public static void imprimirDadosCelulares(){
+
+    }
+    
+    public static void imprimirDadosAntenas(){
+        
+    }
+    
+    public static void imprimirDadosCentral(){
+        
+    }
 //
 }

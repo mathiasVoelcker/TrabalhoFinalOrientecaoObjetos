@@ -53,6 +53,10 @@ public class Mensagem {
         return tempoDeEntrega;
     }
     
+    public boolean getEnviada(){
+        return enviada;
+    }
+    
     public void setEnviada(boolean estado){
         enviada = estado;
     }

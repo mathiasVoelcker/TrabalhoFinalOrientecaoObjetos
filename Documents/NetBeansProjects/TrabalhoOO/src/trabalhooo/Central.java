@@ -41,8 +41,9 @@ public class Central {
             Antena antenaMaisProxima = celularDesejado.getAntenaMaisProxima();
             transmissaoEmAndamento = true;
             sleep(tempoDeTransmissao);
-            antenaMaisProxima.enviarMensagem(celularDesejado, mensagem, this);
+            System.out.println("Enviando mensagem de " + mensagem.getNumCelularEnviando() + " da central para antena " + antenaMaisProxima.getNome());
             transmissaoEmAndamento = false;
+            antenaMaisProxima.enviarMensagem(celularDesejado, mensagem, this); 
             if(!pilhaMensagens.isEmpty()){
                 transmitirMensagem((Mensagem) pilhaMensagens.pop());
                 System.out.println("Numero de mensagens na PILHA: " + pilhaMensagens.size());
@@ -50,6 +51,7 @@ public class Central {
         }
         else{
             pilhaMensagens.push(mensagem);
+            System.out.println("Inserir na pilha mensagem de " + mensagem.getNumCelularEnviando());
             System.out.println("Numero de mensagens na PILHA: " + pilhaMensagens.size());
         }
     }

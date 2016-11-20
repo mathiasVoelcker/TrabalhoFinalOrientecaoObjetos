@@ -27,6 +27,7 @@ public class Celular {
         Mensagem mensagem = new Mensagem(mensagemTexto, numCelularDesejado, numero);
         mensagem.setTempoDeEnvio(central.getSegundosCronometro());
         central.addMensagem(mensagem);
+        System.out.println("Celular de numero " + numero + " enviando mensagem para antena " + antenaMaisProxima.getNome() + ": " + central.getSegundosCronometro() + " segundos");
         antenaMaisProxima.solicitarCentral(central, mensagem, this);
     }
     
