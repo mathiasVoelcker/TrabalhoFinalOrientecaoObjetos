@@ -69,7 +69,9 @@ public class Aplicacao {
 //        celulares.add(c6);
         
         Central central = new Central(mapCelulares, mapAntenas, 4);
+        central.iniciarCronometro();
         mapCentral.put("Central", central);
+        
         a.leituraArquivoEventos(mapCelulares, mapCentral);
         //=======================================================================================================
         
@@ -187,7 +189,7 @@ public class Aplicacao {
         
         //=====================================================================================
         
-        
+     //  a.escritaArquivo();
         
     }  
     
