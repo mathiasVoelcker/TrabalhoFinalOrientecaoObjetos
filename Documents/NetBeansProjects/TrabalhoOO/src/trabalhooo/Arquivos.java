@@ -5,13 +5,13 @@
  */
 package trabalhooo;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 /**
  *
@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class Arquivos {
     
     
-    public Antena leituraArquivo(){
+    public Antena leituraArquivo(List<Antena> listaAntenas){
 
 		BufferedReader br = null;
 
@@ -28,7 +28,7 @@ public class Arquivos {
 
 			String linha = null;
 
-			br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\testing.txt"));
+			br = new BufferedReader(new FileReader("D:\\Tempt\\testing.txt"));
 
 			while ((linha = br.readLine()) != null) {
                                 Scanner sc = new Scanner(linha).useDelimiter(";");
@@ -36,9 +36,8 @@ public class Arquivos {
                                 int capacidadeAntena = Integer.parseInt(sc.next());
                                 int tempoTransmissao = Integer.parseInt(sc.next());
                                 int capacidadeFila = Integer.parseInt(sc.next());
-//                                System.out.println(antenaNome + " " + capacidadeAntena + " "+tempoTransmissao + " " + capacidadeFila);
-                                Antena a1 = new Antena(antenaNome, capacidadeAntena, tempoTransmissao, capacidadeFila);
-                                return a1;
+//                              System.out.println(antenaNome + " " + capacidadeAntena + " "+tempoTransmissao + " " + capacidadeFila);
+                                listaAntenas.add(new Antena(antenaNome, capacidadeAntena, tempoTransmissao, capacidadeFila));
 			}
 
 		} catch (IOException e) {
