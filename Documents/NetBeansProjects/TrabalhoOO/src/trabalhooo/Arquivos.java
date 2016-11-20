@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 /**
  *
@@ -20,7 +21,7 @@ import java.util.Scanner;
 public class Arquivos {
     
     
-    public Antena leituraArquivo(List<Antena> listaAntenas){
+    public void leituraArquivo(Map<String, Antena> mapAntenas){
 
 		BufferedReader br = null;
 
@@ -37,7 +38,7 @@ public class Arquivos {
                                 int tempoTransmissao = Integer.parseInt(sc.next());
                                 int capacidadeFila = Integer.parseInt(sc.next());
 //                              System.out.println(antenaNome + " " + capacidadeAntena + " "+tempoTransmissao + " " + capacidadeFila);
-                                listaAntenas.add(new Antena(antenaNome, capacidadeAntena, tempoTransmissao, capacidadeFila));
+                                mapAntenas.put(antenaNome, new Antena(antenaNome, capacidadeAntena, tempoTransmissao, capacidadeFila));
 			}
 
 		} catch (IOException e) {
@@ -50,7 +51,6 @@ public class Arquivos {
 			}
 		}
                 
-               return null; 
     }
     
     
