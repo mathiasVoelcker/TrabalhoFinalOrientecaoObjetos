@@ -27,8 +27,11 @@ public class Aplicacao {
         List<Celular> celulares = new ArrayList<Celular>();
         List<Antena> antenas = new ArrayList<Antena>();
                 
-        Antena a1 = new Antena("antena1", 4, 4000, 5);
+        Arquivos a = new Arquivos();
+        Antena a1 = a.leituraArquivo();
         antenas.add(a1);
+//        Antena a1 = new Antena("antena1", 4, 4000, 5);
+//        antenas.add(a1);
         Antena a2 = new Antena("antena2", 3, 3000, 4);
         antenas.add(a2);
         Antena a3 = new Antena("antena3", 3, 5000, 3);
@@ -36,7 +39,7 @@ public class Aplicacao {
         Antena a4 = new Antena("antena4", 6, 2000, 6);
         antenas.add(a4);
         
-        Celular c1 = new Celular("99994438", a3);
+        Celular c1 = new Celular("99994438", a1);
         celulares.add(c1);
         Celular c2 = new Celular("99932438", a1);
         celulares.add(c2);
@@ -53,7 +56,7 @@ public class Aplicacao {
         //=======================================================================================================
         
         
-        //=====================================DEVE SER LIDO DE UM ARQUIVO TEXTO==========================================
+//        =====================================DEVE SER LIDO DE UM ARQUIVO TEXTO==========================================
         Thread thread1 = new Thread(){
             public void run(){
                 try {
