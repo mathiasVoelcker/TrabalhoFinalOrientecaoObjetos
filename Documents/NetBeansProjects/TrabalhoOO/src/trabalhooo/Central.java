@@ -20,22 +20,27 @@ import javax.swing.Timer;
 public class Central {
     private List<Antena> antenas = new ArrayList<Antena>();
     private List<Celular> celulares = new ArrayList<Celular>();
+    private List<Mensagem> mensagens = new ArrayList<Mensagem>();
+    private List<Mensagem> mensagensDeErro = new ArrayList<Mensagem>();
+    private List<Mensagem> mensagensNaoEnviadas = new ArrayList<Mensagem>();
     private Stack pilhaMensagens = new Stack();
     private boolean transmissaoEmAndamento = false;
+    private int tempoDeTransmissao;
 
     
-    public Central(List<Celular> celulares, List<Antena> antenas){
+    public Central(List<Celular> celulares, List<Antena> antenas, int tempoDeTransmissao){
         this.celulares = celulares;
         this.antenas = antenas;
+        this.tempoDeTransmissao = tempoDeTransmissao;
     }
     
     public void transmitirMensagem(Mensagem mensagem) throws InterruptedException{
+        mensagem.passarPelaCentral();
         if(!transmissaoEmAndamento){
             Celular celularDesejado = identificarCelular(mensagem.getNumCelularDesejado()); 
             Antena antenaMaisProxima = celularDesejado.getAntenaMaisProxima();
             transmissaoEmAndamento = true;
-            System.out.println("TRANSMISSOES NA CENTRAL: " + transmissaoEmAndamento);
-            sleep(8);
+            sleep(tempoDeTransmissao);
             antenaMaisProxima.enviarMensagem(celularDesejado, mensagem, this);
             transmissaoEmAndamento = false;
             if(!pilhaMensagens.isEmpty()){
@@ -79,7 +84,29 @@ public class Central {
         cronometro.iniciarCronometro();
     }
     
-
+    public void addMensagem(Mensagem mensagem){
+        mensagens.add(mensagem);
+    }
+    
+    public List<Mensagem> getMensagens(){
+        return mensagens;
+    }
+    
+    public void addMensagemDeErro(Mensagem mensagem){
+        mensagensDeErro.add(mensagem);
+    }
+    
+    public List<Mensagem> getMensagensDeErro(){
+        return mensagensDeErro;
+    }
+    
+    public void addMensagemNaoEnviada(Mensagem mensagem){
+        mensagensNaoEnviadas.add(mensagem);
+    }
+    
+    public List<Mensagem> getMensagensNaoEnviadas(){
+        return mensagensNaoEnviadas;
+    }
     
 }
 

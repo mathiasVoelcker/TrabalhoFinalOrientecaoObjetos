@@ -41,7 +41,7 @@ public class CentralTest {
         Celular c2 = new Celular("99932438", a1);
         celulares.add(c2);
         Mensagem mensagem = new Mensagem("testeAntena1", c2.getNumero(), c1.getNumero());
-        Central central = new Central(celulares, antenas);        
+        Central central = new Central(celulares, antenas, 8);        
         central.transmitirMensagem(mensagem);
         assertEquals(mensagem, c2.getUltimaMensagem());
     }
@@ -59,7 +59,7 @@ public class CentralTest {
         celulares.add(c1);
         Celular c2 = new Celular("99932438", null);
         celulares.add(c2);
-        Central central = new Central(celulares, null);
+        Central central = new Central(celulares, null, 8);
 
         
         assertEquals(c1, central.identificarCelular("99994438"));
@@ -76,7 +76,7 @@ public class CentralTest {
         List<Antena> antenas = new ArrayList<Antena>();
         Antena a1 = new Antena("antena1", 4, 4000, 5);
         antenas.add(a1);
-        Central central = new Central(null, antenas);
+        Central central = new Central(null, antenas, 8);
         assertEquals(antenas, central.getAntenas());
         
     }

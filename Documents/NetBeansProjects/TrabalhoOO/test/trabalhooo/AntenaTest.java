@@ -41,7 +41,7 @@ public class AntenaTest {
         celulares.add(c2);
         Mensagem mensagem = new Mensagem("testeAntena1", c2.getNumero(), c1.getNumero());
         
-        Central central = new Central(celulares, antenas);
+        Central central = new Central(celulares, antenas, 8);
         a1.solicitarCentral(central, mensagem, c1);
         assertEquals(mensagem, c2.getUltimaMensagem());
     }
@@ -58,7 +58,7 @@ public class AntenaTest {
         celulares.add(c2);
         Mensagem mensagem = new Mensagem("testeAntena1", c2.getNumero(), c1.getNumero());
         
-        Central central = new Central(celulares, antenas);
+        Central central = new Central(celulares, antenas, 8);
         a1.solicitarCentral(central, mensagem, c1);
         a1.solicitarCentral(central, mensagem, c2);
         assertEquals(mensagem, a1.getMensagens().poll());
@@ -80,7 +80,7 @@ public class AntenaTest {
         celulares.add(c2);
         Mensagem mensagem = new Mensagem("testeAntena1", c2.getNumero(), c1.getNumero());
         
-        Central central = new Central(celulares, antenas);
+        Central central = new Central(celulares, antenas, 8);
         a1.inserirTransmissaoNaFila(mensagem);
         Mensagem mensagemNaFila = a1.getMensagens().element();
         a1.esvaziarFila(central, c1);

@@ -43,7 +43,7 @@ public class CelularTest {
         String numCelularDesejado = c2.getNumero();
         String mensagemTexto = "Mensagem de teste1";
         
-        Central central = new Central(celulares, antenas);
+        Central central = new Central(celulares, antenas, 8);
         
         c1.enviarMensagem(numCelularDesejado, mensagemTexto, central);
         // TODO review the generated test code and remove the default call to fail.

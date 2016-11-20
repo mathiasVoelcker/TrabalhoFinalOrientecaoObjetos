@@ -16,6 +16,8 @@ public class Mensagem {
     private String numCelularEnviando;
     private int tempoDoEnvio;
     private int tempoDeEntrega;
+    private boolean enviada;
+    private boolean passouPelaCentral = false;
     
     public Mensagem(String texto, String numCelularDesejado, String numCelularEnviando){
         this.texto = texto;
@@ -49,5 +51,17 @@ public class Mensagem {
     
     public int getTempoDeEntrega(){
         return tempoDeEntrega;
+    }
+    
+    public void setEnviada(boolean estado){
+        enviada = estado;
+    }
+    
+    public void passarPelaCentral(){
+        passouPelaCentral = true;
+    }
+    
+    public boolean getPassouPelaCentral(){
+        return passouPelaCentral;
     }
 }

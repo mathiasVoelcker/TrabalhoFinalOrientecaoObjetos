@@ -51,7 +51,7 @@ public class Aplicacao {
         Celular c6 = new Celular("99243565", a4);
         celulares.add(c6);
         
-        Central central = new Central(celulares, antenas);
+        Central central = new Central(celulares, antenas, 4);
         //=======================================================================================================
         
         
@@ -59,7 +59,7 @@ public class Aplicacao {
         Thread thread1 = new Thread(){
             public void run(){
                 try {
-                    c1.enviarMensagem("99932438", "0pa, tudo bom1?", central);
+                    c1.enviarMensagem("94432438", "0pa, tudo bom1?", central);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -69,7 +69,7 @@ public class Aplicacao {
         Thread thread2 = new Thread(){
             public void run(){
                 try {
-                    c1.enviarMensagem("99997796", "0pa, tudo bom2?", central);
+                    c1.enviarMensagem("99126438", "0pa, tudo bom2?", central);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -79,7 +79,7 @@ public class Aplicacao {
         Thread thread3 = new Thread(){
             public void run(){
                 try {
-                    c1.enviarMensagem("99997796", "0pa, tudo bom3?", central);
+                    c1.enviarMensagem("99243565", "0pa, tudo bom3?", central);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -109,7 +109,7 @@ public class Aplicacao {
         Thread thread6 = new Thread(){
             public void run(){
                 try {
-                    c1.enviarMensagem("99243565", "0pa, tudo bom6?", central);
+                    c1.enviarMensagem("99994438", "0pa, tudo bom6?", central);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -126,20 +126,44 @@ public class Aplicacao {
             }
         };
         
+        Thread thread8 = new Thread(){
+            public void run(){
+                try {
+                    c1.enviarMensagem("99243565", "0pa, tudo bom6?", central);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        
+        Thread thread9 = new Thread(){
+            public void run(){
+                try {
+                    c1.enviarMensagem("99994438", "0pa, tudo bom7?", central);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Aplicacao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        
         central.iniciarCronometro();
         thread1.start();
-        sleep(1000);
+        sleep(100);
         thread2.start();
-        sleep(1000);
+        sleep(100);
         thread3.start();
-        sleep(1000);
+        sleep(100);
         thread4.start();
-        sleep(1000);
+        sleep(100);
         thread5.start();
-        sleep(1000);
+        sleep(100);
         thread6.start();
-        sleep(1000);
+        sleep(100);
         thread7.start();
+        sleep(100);
+        thread8.start();
+        sleep(100);
+        thread9.start();
         
         //=====================================================================================
         

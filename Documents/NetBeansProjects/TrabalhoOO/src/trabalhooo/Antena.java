@@ -17,9 +17,8 @@ public class Antena {
     
     private String nome;
     private int capacidadeAtendimentos;
-    private int tempoTransmissao;
     private int capacidadeFila;
-    
+    private int tempoTransmissao;
     private Queue<Mensagem> mensagens = new LinkedList<Mensagem>();
     private int numTransmissoesEmAndamento = 0;
     
@@ -30,15 +29,7 @@ public class Antena {
         this.tempoTransmissao = tempoTransmissao;
         this.capacidadeFila = capacidadeFila;
     }
-    
-    
-//    public void verificarDisponibilidadeAntena(Central central, Mensagem mensagem) throws InterruptedException{
-//        if(numTransmissoesEmAndamento < capacidadeAtendimentos){
-//            numTransmissoesEmAndamento++;
-//            solicitarCentral(central, mensagem);
-//            numTransmissoesEmAndamento--;
-//        }
-//    }
+   
     
     public void solicitarCentral(Central central, Mensagem mensagem, Celular celularEnviando) throws InterruptedException{
         if(numTransmissoesEmAndamento < capacidadeAtendimentos){
@@ -57,21 +48,41 @@ public class Antena {
         }
         else{
             Mensagem mensagemDeErro = new Mensagem("Desculpe, mensagem nao enviada.", celularEnviando.getNumero(), "Erro");
-            enviarMensagem(celularEnviando, mensagemDeErro, null);
+            mensagem.setEnviada(false);
+            central.addMensagemDeErro(mensagemDeErro);
+            enviarMensagem(celularEnviando, mensagemDeErro, new Central(null, null, 8));
         }
     }
     
-    public void esvaziarFila(Central central, Celular celularEnviando) throws InterruptedException{
+    public void esvaziarFila(Central central, Celular celular) throws InterruptedException{
         while(numTransmissoesEmAndamento < capacidadeAtendimentos  && !mensagens.isEmpty()){
-            solicitarCentral(central, mensagens.poll(), celularEnviando);
+            if(mensagens.peek().getPassouPelaCentral())
+                enviarMensagem(celular, mensagens.poll(), central);
+            else
+                solicitarCentral(central, mensagens.poll(), celular);
             System.out.println("transmissoes em andamento: " + numTransmissoesEmAndamento);
         }
     }
     
     public void enviarMensagem(Celular celularDesejado, Mensagem mensagem, Central central) throws InterruptedException{
-        sleep(tempoTransmissao);
-        System.out.println(nome + " enviando mensagem para celular");
-        celularDesejado.receberMensagem(mensagem, central);
+        if(numTransmissoesEmAndamento < capacidadeAtendimentos){
+            numTransmissoesEmAndamento = numTransmissoesEmAndamento + 1;
+            System.out.println("transmissoes em andamento: " + numTransmissoesEmAndamento);
+            System.out.println("tamanho da fila: " + mensagens.size());
+            sleep(tempoTransmissao);
+            celularDesejado.receberMensagem(mensagem, central);
+            numTransmissoesEmAndamento = numTransmissoesEmAndamento - 1;
+            esvaziarFila(central, celularDesejado);
+        }
+        else if(inserirTransmissaoNaFila(mensagem)){
+            System.out.println("tamanho da fila: " + mensagens.size());
+            sleep(tempoTransmissao);
+        }
+        else{
+            mensagem.setEnviada(false);
+            central.addMensagemNaoEnviada(mensagem);
+            System.out.println("MENSAGEM PERDIDA!!!");
+        }
     }
     
     public boolean inserirTransmissaoNaFila(Mensagem mensagem){
