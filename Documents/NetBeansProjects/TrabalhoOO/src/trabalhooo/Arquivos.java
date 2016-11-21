@@ -35,6 +35,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
+import static trabalhooo.Aplicacao.interfaceComUsuario;
 /**
  *
  * @author user
@@ -59,6 +60,7 @@ public class Arquivos {
                                 int capacidadeAntena = Integer.parseInt(sc.next());
                                 int tempoTransmissao = Integer.parseInt(sc.next());
                                 int capacidadeFila = Integer.parseInt(sc.next());
+                                System.out.println(antenaNome + ", " + capacidadeAntena + ", " + tempoTransmissao + ", " + capacidadeFila);
 //                              System.out.println(antenaNome + " " + capacidadeAntena + " "+tempoTransmissao + " " + capacidadeFila);
                                 mapAntenas.put(antenaNome, new Antena(antenaNome, capacidadeAntena, tempoTransmissao, capacidadeFila));
                                 qntAntenas = qntAntenas + 1;
@@ -84,6 +86,7 @@ public class Arquivos {
 		try {
 
 			String linha = null;
+                        
 
 			br = new BufferedReader(new FileReader("D:\\Temp\\eventos.txt"));
 
@@ -93,8 +96,8 @@ public class Arquivos {
                                 String numCelularDesejado = sc.next();
                                 String mensagemTexto = sc.next();
                                 String nomeCentral = sc.next();
-                               
-                                Thread thread1 = new Thread(){
+                                System.out.println(numCelularEnviando);
+                                Thread thread = new Thread(){
                                     @Override
                                     public void run(){
                                         try {
@@ -105,11 +108,12 @@ public class Arquivos {
                                         }
                                     }
                                 };
-                                thread1.start();
+                                thread.start();
                                 sleep(200);
-//                                System.out.println(antenaNome + " " + capacidadeAntena + " "+tempoTransmissao + " " + capacidadeFila);
-                                
+      
+//                                System.out.println(antenaNome + " " + capacidadeAntena + " "+tempoTransmissao + " " + capacidadeFila);   
 			}
+                        
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -136,6 +140,7 @@ public class Arquivos {
                             Scanner sc = new Scanner(linha).useDelimiter(";");
                             String numero = sc.next();
                             Antena antenaMaisProxima = mapAntenas.get(sc.next());
+                            System.out.println(numero + ", " + antenaMaisProxima.getNome());
                             mapCelulares.put(numero, new Celular (numero, antenaMaisProxima));
                             qntCelulares = qntCelulares + 1;
                         }
@@ -151,28 +156,7 @@ public class Arquivos {
                         System.out.println("qnt celulares="+qntCelulares);
     }
     }
-    
-    //TESTE FALHADO
-//    public void escritaArquivo(Map<String, Celular> mapCelulares, Map<String, Antena> mapAntenas, Map<String, Central> mapCentral) throws InterruptedException{
-//        Path path1 = Paths.get("D:\\Temp\\log.txt");
-//        try(PrintWriter writer = new PrintWriter(Files.newBufferedWriter(path1, Charset.defaultCharset()))) {
-//
-//			//String content = "This is the content to write into file";
-//                       // File file = new File("D:\\Temp\\log.txt");
-//
-//			// if file doesnt exists, then create it
-////			if (!file.exists()) {
-////				file.createNewFile();
-////                        }+
-//                        FileWriter write = new FileWriter("D:\\Temp\\log.txt", append_to_file);
-//                        writer.format("%s;%s;%s",mapCelulares.toString(), mapAntenas.toString(), mapCentral.toString());
-//			System.out.println("Log registrado");
-//                        
-//		} catch (IOException e) {
-//			System.err.format("Erro de E/S: %s%n", e);
-//		}
-//    
-//    }
+
     public static void escritaArquivo(){
         try {
             PrintStream out = new PrintStream(new FileOutputStream("D:\\Temp\\log.txt"));

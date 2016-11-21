@@ -7,6 +7,7 @@ package trabalhooo;
 
 import java.util.ArrayList;
 import java.util.List;
+import static trabalhooo.Aplicacao.simulacao;
 
 /**
  *
@@ -27,13 +28,15 @@ public class Celular {
         Mensagem mensagem = new Mensagem(mensagemTexto, numCelularDesejado, numero);
         mensagem.setTempoDeEnvio(central.getSegundosCronometro());
         central.addMensagem(mensagem);
-        System.out.println("Celular de numero " + numero + " enviando mensagem para antena " + antenaMaisProxima.getNome() + ": " + central.getSegundosCronometro() + " segundos");
+        String respostaSimulacao = "Celular de numero " + numero + " enviando mensagem para antena " + antenaMaisProxima.getNome() + ": " + central.getSegundosCronometro() + " segundos";
+        System.out.println(respostaSimulacao);
+        simulacao = simulacao + respostaSimulacao + "\n";
         antenaMaisProxima.solicitarCentral(central, mensagem, this);
     }
     
     public void receberMensagem(Mensagem mensagem, Central central){
         mensagens.add(mensagem);
-        if(!mensagem.getPassouPelaCentral()){
+        if(mensagem.getPassouPelaCentral()){
             mensagem.setTempoDeEntrega(central.getSegundosCronometro());
             mensagem.setEnviada(true);
             System.out.println("================================================================================");
@@ -44,6 +47,7 @@ public class Celular {
         System.out.println(this.getNumero() +  " recebeu a mensagem" + ": " + mensagem.getTexto() + " de " + mensagem.getNumCelularEnviando());
     }
     
+ 
     public String getNumero(){
         return numero;
     }
@@ -54,6 +58,10 @@ public class Celular {
         
     public Mensagem getUltimaMensagem(){
         return mensagens.get((mensagens.size())-1);
+    }
+    
+    public String getString(){
+        return "celular de numero: " + numero + ", ligado a antena " + antenaMaisProxima.getNome();
     }
     
 }

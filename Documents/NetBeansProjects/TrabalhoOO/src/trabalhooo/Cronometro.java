@@ -32,10 +32,15 @@ public class Cronometro {
         }; 
         this.cronometro = new Timer(velocidade, action);
         this.cronometro.start();
+        
     }
     
     public int getCurrentSegundo(){
         return currentSegundo;
+    }
+    
+    public void interromperCronometro(){
+        this.cronometro.stop();
     }
     
     

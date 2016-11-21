@@ -8,6 +8,7 @@ package trabalhooo;
 import static java.lang.Thread.sleep;
 import java.util.LinkedList;
 import java.util.Queue;
+import static trabalhooo.Aplicacao.simulacao;
 
 /**
  *
@@ -36,13 +37,16 @@ public class Antena {
             numTransmissoesEmAndamento = numTransmissoesEmAndamento + 1;
             sleep(tempoTransmissao);
             System.out.println(nome + " enviando mensagem para central.");
+            simulacao = simulacao + nome + " enviando mensagem para central." + "\n";
             central.transmitirMensagem(mensagem);
             numTransmissoesEmAndamento = numTransmissoesEmAndamento - 1;
             esvaziarFila(central, celularEnviando);
         }
         else if(inserirTransmissaoNaFila(mensagem)){
             System.out.println("inserir mensagem de " + mensagem.getNumCelularEnviando() + " na fila");
+            simulacao = simulacao + "inserir mensagem de " + mensagem.getNumCelularEnviando() + " na fila" + "\n";
             System.out.println("tamanho da fila: " + mensagens.size());
+            simulacao = simulacao + "tamanho da fila: " + mensagens.size() + "\n";
             sleep(tempoTransmissao);
         }
         else{
@@ -56,6 +60,7 @@ public class Antena {
     public void esvaziarFila(Central central, Celular celular) throws InterruptedException{
         while(numTransmissoesEmAndamento < capacidadeAtendimentos  && !mensagens.isEmpty()){
             System.out.println("Tirar da fila a mensagem de " + mensagens.peek().getNumCelularEnviando());
+            simulacao = simulacao + "Tirar da fila a mensagem de " + mensagens.peek().getNumCelularEnviando() + "\n";
             if(mensagens.peek().getPassouPelaCentral())
                 enviarMensagem(celular, mensagens.poll(), central);
             else
@@ -70,19 +75,23 @@ public class Antena {
             numTransmissoesEmAndamento = numTransmissoesEmAndamento + 1;
             sleep(tempoTransmissao);
             System.out.println(nome + " enviando mensagem para o celular de numero " + celularDesejado.getNumero());
+            simulacao = simulacao + nome + " enviando mensagem para o celular de numero " + celularDesejado.getNumero() + "\n";
             celularDesejado.receberMensagem(mensagem, central);
             numTransmissoesEmAndamento = numTransmissoesEmAndamento - 1;
             esvaziarFila(central, celularDesejado);
         }
         else if(inserirTransmissaoNaFila(mensagem)){
             System.out.println("inserir mensagem de " + mensagem.getNumCelularEnviando() + " na fila");
+            simulacao = simulacao + "inserir mensagem de " + mensagem.getNumCelularEnviando() + " na fila" + "\n";
             System.out.println("tamanho da fila: " + mensagens.size());
+            simulacao = simulacao + "tamanho da fila: " + mensagens.size() + "\n";
             sleep(tempoTransmissao);
         }
         else{
             mensagem.setEnviada(false);
             central.addMensagemNaoEnviada(mensagem);
             System.out.println("MENSAGEM PERDIDA!!!");
+            simulacao = simulacao + "MENSAGEM PERDIDA!!!" + "\n";
         }
     }
     
@@ -101,5 +110,9 @@ public class Antena {
     
     public Queue<Mensagem> getMensagens(){
         return mensagens;
+    }
+    
+    public String getString(){
+        return "Antena " + nome + " de capacidade " + capacidadeAtendimentos + " e capacidade de fila " + capacidadeFila + " e tempo de transmissao de " + tempoTransmissao + " milisegundos";
     }
 }

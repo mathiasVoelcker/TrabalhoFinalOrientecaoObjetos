@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import javax.swing.Timer;
+import static trabalhooo.Aplicacao.simulacao;
 
 /**
  *
@@ -44,17 +45,21 @@ public class Central {
             transmissaoEmAndamento = true;
             sleep(tempoDeTransmissao);
             System.out.println("Enviando mensagem de " + mensagem.getNumCelularEnviando() + " da central para antena " + antenaMaisProxima.getNome());
+            simulacao = simulacao + "Enviando mensagem de " + mensagem.getNumCelularEnviando() + " da central para antena " + antenaMaisProxima.getNome() + "\n";
             transmissaoEmAndamento = false;
             antenaMaisProxima.enviarMensagem(celularDesejado, mensagem, this); 
             if(!pilhaMensagens.isEmpty()){
                 transmitirMensagem((Mensagem) pilhaMensagens.pop());
                 System.out.println("Numero de mensagens na PILHA: " + pilhaMensagens.size());
+                simulacao = simulacao + "Numero de mensagens na PILHA: " + pilhaMensagens.size() + "\n";
             }
         }
         else{
             pilhaMensagens.push(mensagem);
             System.out.println("Inserir na pilha mensagem de " + mensagem.getNumCelularEnviando());
+            simulacao = simulacao + "Inserir na pilha mensagem de " + mensagem.getNumCelularEnviando() + "\n";
             System.out.println("Numero de mensagens na PILHA: " + pilhaMensagens.size());
+            simulacao = simulacao + "Numero de mensagens na PILHA: " + pilhaMensagens.size() + "\n";
         }
     }
     
@@ -74,6 +79,10 @@ public class Central {
         return mapAntenas;
     }
     
+    public Map<String, Celular> getMapCelulares(){
+        return mapCelulares;
+    }
+    
     public Stack getPilha(){
         return pilhaMensagens;
     }
@@ -87,6 +96,10 @@ public class Central {
     
     public void iniciarCronometro(){
         cronometro.iniciarCronometro();
+    }
+    
+    public void interromperCronometro(){
+        cronometro.interromperCronometro();
     }
     
     public void addMensagem(Mensagem mensagem){
@@ -113,5 +126,21 @@ public class Central {
         return mensagensNaoEnviadas;
     }
     
+    public double getTempoMedioMensagens(){
+        double somatorioTempoDeEntrega = 0;
+        double numCelulares = 0;
+        for(Mensagem mensagem: mensagens){
+            if(mensagem.getEnviada()){
+                somatorioTempoDeEntrega = somatorioTempoDeEntrega + (double)mensagem.getTempoDeEntrega();
+                numCelulares = numCelulares + 1;
+            }
+        }
+        double media = somatorioTempoDeEntrega/numCelulares;
+        return media;
+    }
+    
+    public String getString(){
+        return "Central com " + mapAntenas.size() + " antenas, " + mapCelulares.size() + " celulares e tempo de transmissao de " + tempoDeTransmissao + " segundos";
+    }
 }
 
