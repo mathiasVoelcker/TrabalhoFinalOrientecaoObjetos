@@ -7,7 +7,9 @@ package trabalhooo;
 
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -30,15 +32,15 @@ public class AntenaTest {
      */
     @Test
     public void testSolicitarCentral() throws Exception {
-        List<Celular> celulares = new ArrayList<Celular>();
-        List<Antena> antenas = new ArrayList<Antena>();
+        Map<String, Celular> celulares = new HashMap<String, Celular>();
+        Map<String, Antena> antenas = new HashMap<String, Antena>();
         
         Antena a1 = new Antena("antena1", 4, 4000, 5);
-        antenas.add(a1);
+        antenas.put("antena1", a1);
         Celular c1 = new Celular("99994438", a1);
-        celulares.add(c1);
+        celulares.put("99994438", c1);
         Celular c2 = new Celular("99932438", a1);
-        celulares.add(c2);
+        celulares.put("99932438", c2);
         Mensagem mensagem = new Mensagem("testeAntena1", c2.getNumero(), c1.getNumero());
         
         Central central = new Central(celulares, antenas, 8);
@@ -47,15 +49,15 @@ public class AntenaTest {
     }
     
     public void testSolicitarCentral1() throws Exception {
-        List<Celular> celulares = new ArrayList<Celular>();
-        List<Antena> antenas = new ArrayList<Antena>();
+        Map<String, Celular> celulares = new HashMap<String, Celular>();
+        Map<String, Antena> antenas = new HashMap<String, Antena>();
         
         Antena a1 = new Antena("antena1", 4, 4000, 5);
-        antenas.add(a1);
+        antenas.put("antena1", a1);
         Celular c1 = new Celular("99994438", a1);
-        celulares.add(c1);
+        celulares.put("99994438", c1);
         Celular c2 = new Celular("99932438", a1);
-        celulares.add(c2);
+        celulares.put("99932438", c2);
         Mensagem mensagem = new Mensagem("testeAntena1", c2.getNumero(), c1.getNumero());
         
         Central central = new Central(celulares, antenas, 8);
@@ -69,15 +71,15 @@ public class AntenaTest {
 //     */
     @Test
     public void testEsvaziarFila() throws Exception {
-        List<Celular> celulares = new ArrayList<Celular>();
-        List<Antena> antenas = new ArrayList<Antena>();
+        Map<String, Celular> celulares = new HashMap<String, Celular>();
+        Map<String, Antena> antenas = new HashMap<String, Antena>();
         
         Antena a1 = new Antena("antena1", 4, 4000, 5);
-        antenas.add(a1);
+        antenas.put("antena1", a1);
         Celular c1 = new Celular("99994438", a1);
-        celulares.add(c1);
+        celulares.put("99994438", c1);
         Celular c2 = new Celular("99932438", a1);
-        celulares.add(c2);
+        celulares.put("99932438", c2);
         Mensagem mensagem = new Mensagem("testeAntena1", c2.getNumero(), c1.getNumero());
         
         Central central = new Central(celulares, antenas, 8);
@@ -95,12 +97,20 @@ public class AntenaTest {
     public void testEnviarMensagem() throws Exception {
         System.out.println("enviarMensagem");
         
+        Map<String, Celular> celulares = new HashMap<String, Celular>();
+        Map<String, Antena> antenas = new HashMap<String, Antena>();
+        
         Antena a1 = new Antena("antena1", 4, 4000, 5);
+        antenas.put("antena1", a1);
         Celular c1 = new Celular("99994438", a1);
+        celulares.put("99994438", c1);
         Celular c2 = new Celular("99932438", a1);
+        celulares.put("99932438", c2);
         Mensagem mensagem = new Mensagem("testeAntena1", c2.getNumero(), c1.getNumero());
         
-        a1.enviarMensagem(c1, mensagem, null);
+        Central central = new Central(celulares, antenas, 1);
+        
+        a1.enviarMensagem(c1, mensagem, central);
         assertEquals(mensagem, c1.getUltimaMensagem());
     }
 //
@@ -110,16 +120,18 @@ public class AntenaTest {
     @Test
     public void testInserirTransmissaoNaFila() {
         System.out.println("enviarMensagem");
-        List<Celular> celulares = new ArrayList<Celular>();
-        List<Antena> antenas = new ArrayList<Antena>();
+        Map<String, Celular> celulares = new HashMap<String, Celular>();
+        Map<String, Antena> antenas = new HashMap<String, Antena>();
         
         Antena a1 = new Antena("antena1", 4, 4000, 5);
-        antenas.add(a1);
+        antenas.put("antena1", a1);
         Celular c1 = new Celular("99994438", a1);
-        celulares.add(c1);
+        celulares.put("99994438", c1);
         Celular c2 = new Celular("99932438", a1);
-        celulares.add(c2);
+        celulares.put("99932438", c2);
         Mensagem mensagem = new Mensagem("testeAntena1", c2.getNumero(), c1.getNumero());
+        
+        Central central = new Central(celulares, antenas, 8);
         
         a1.inserirTransmissaoNaFila(mensagem);
         assertEquals(mensagem, a1.getMensagens().poll());

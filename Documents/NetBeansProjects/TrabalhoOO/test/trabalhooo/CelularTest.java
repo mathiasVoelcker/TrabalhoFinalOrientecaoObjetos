@@ -7,7 +7,9 @@ package trabalhooo;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -31,20 +33,21 @@ public class CelularTest {
     public void testEnviarMensagem() throws Exception {
         System.out.println("enviarMensagem");
 
-        List<Celular> celulares = new ArrayList<Celular>();
-        List<Antena> antenas = new ArrayList<Antena>();
-
+        Map<String, Celular> celulares = new HashMap<String, Celular>();
+        Map<String, Antena> antenas = new HashMap<String, Antena>();
+        
         Antena a1 = new Antena("antena1", 4, 4000, 5);
-        antenas.add(a1);
+        antenas.put("antena1", a1);
         Celular c1 = new Celular("99994438", a1);
-        celulares.add(c1);
+        celulares.put("99994438", c1);
         Celular c2 = new Celular("99932438", a1);
-        celulares.add(c2);
-        String numCelularDesejado = c2.getNumero();
-        String mensagemTexto = "Mensagem de teste1";
+        celulares.put("99932438", c2);
+        Mensagem mensagem = new Mensagem("testeAntena1", c2.getNumero(), c1.getNumero());
         
         Central central = new Central(celulares, antenas, 8);
-        
+        String numCelularDesejado = c2.getNumero();
+        String mensagemTexto = "Mensagem de teste1";
+                
         c1.enviarMensagem(numCelularDesejado, mensagemTexto, central);
         // TODO review the generated test code and remove the default call to fail.
         assertEquals("Mensagem de teste1", c2.getUltimaMensagem().getTexto());
@@ -60,11 +63,20 @@ public class CelularTest {
         System.out.println("receberMensagem");
         String texto = "Mensagem de teste2";
         String numCelularEnviando = "99932543";
+        Map<String, Celular> celulares = new HashMap<String, Celular>();
+        Map<String, Antena> antenas = new HashMap<String, Antena>();
         
-        
-        Celular c1 = new Celular("99994438", new Antena("antena1", 4, 4000, 5));
+        Antena a1 = new Antena("antena1", 4, 4000, 5);
+        antenas.put("antena1", a1);
+        Celular c1 = new Celular("99994438", a1);
+        celulares.put("99994438", c1);
+        Celular c2 = new Celular("99932438", a1);
+        celulares.put("99932438", c2);
         Mensagem mensagem = new Mensagem(texto, c1.getNumero(), numCelularEnviando);
-        c1.receberMensagem(mensagem, null);
+        
+        Central central = new Central(celulares, antenas, 8);
+    
+        c1.receberMensagem(mensagem, central);
         // TODO review the generated test code and remove the default call to fail.
         assertEquals(mensagem, c1.getUltimaMensagem());
     }
