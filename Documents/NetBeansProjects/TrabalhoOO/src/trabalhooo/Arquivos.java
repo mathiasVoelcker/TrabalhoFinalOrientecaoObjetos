@@ -35,7 +35,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
-import static trabalhooo.Aplicacao.interfaceComUsuario;
 /**
  *
  * @author user
@@ -44,16 +43,11 @@ public class Arquivos {
     int qntCelulares = 0;
     int qntAntenas = 0;
     
-    public void leituraArquivo(Map<String, Antena> mapAntenas){
-
+    public void leituraArquivoAntenas(Map<String, Antena> mapAntenas){
 		BufferedReader br = null;
-
 		try {
-
 			String linha = null;
-
-			br = new BufferedReader(new FileReader("D:\\Temp\\testing.txt"));
-
+			br = new BufferedReader(new FileReader("D:\\Temp\\antenas.txt"));
 			while ((linha = br.readLine()) != null) {
                                 Scanner sc = new Scanner(linha).useDelimiter(";");
 				String antenaNome = sc.next();
@@ -65,7 +59,6 @@ public class Arquivos {
                                 mapAntenas.put(antenaNome, new Antena(antenaNome, capacidadeAntena, tempoTransmissao, capacidadeFila));
                                 qntAntenas = qntAntenas + 1;
 			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -75,8 +68,7 @@ public class Arquivos {
 				ex.printStackTrace();
 			}
 		}
-                System.out.println("qnt antenas="+qntAntenas);
-                
+                System.out.println("qnt antenas="+qntAntenas);               
     }
     
     

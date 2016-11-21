@@ -52,7 +52,7 @@ public class Aplicacao extends Application{
     private static Map<String, Celular> mapCelulares = new HashMap<String, Celular>();
     private static Map<String, Antena> mapAntenas = new HashMap<String, Antena>();
     private static Map<String, Central> mapCentral = new HashMap<String, Central>(); 
-    private static Central central = new Central(mapCelulares, mapAntenas, 4);
+    private static Central central = new Central(mapCelulares, mapAntenas, 2);
     
     public static void main(String[] args) throws InterruptedException {
         
@@ -69,57 +69,10 @@ public class Aplicacao extends Application{
         launch(args);
         
     }  
-    
-    public static void interfaceComUsuario() throws InterruptedException{
-        Scanner entrada = new Scanner(System.in);
-        
-        System.out.println("Seja bem vindo!");
-        textArea.setText("Seja bem vindo!");
-        System.out.println("Por favor, insira o numero do comando desejado:");
-        System.out.println("Clique em Simulacao Tela para rodar simulacao na tela");
-        System.out.println("Clique em Simulacao Arquivo para salvar simulacao em um arquivo log");
-        System.out.println("3 - Imprimir dados das Antenas");
-        System.out.println("4 - Imprimir dados da Central");
-        
-        String texto = entrada.next();
-        System.out.println(texto);
-        
-        switch(texto){
-            case "1": rodarSimulacao();
-            case "2": imprimirDadosCelulares();
-            break;
-            case "3": imprimirDadosAntenas();
-            break;
-            case "4": imprimirDadosCentral();
-            break;  
-        }
-    }
-    
-    public static void rodarSimulacao() throws InterruptedException{
-        Scanner entrada = new Scanner(System.in);
-        
-        System.out.println("Insira o numero do comando desejado:");
-        System.out.println("1 - Mostrar resultado na interface");
-        System.out.println("2 - Salvar resultado em um arquivo texto");
-        
-        String texto = entrada.next();
-        System.out.println(texto);
-        
-        switch(texto){
-            case "1": rodarEmInterface();
-            break;
-            case "2": escreverArquivoTexto();
-            break;
-            case "3":
-                System.out.println("Desculpe, comando invalido");
-                rodarSimulacao();
-                break;
-        }
-    }
-    
+
     public static void rodarEmInterface() throws InterruptedException{
         Arquivos a = new Arquivos();
-        a.leituraArquivo(central.getMapAntenas());
+        a.leituraArquivoAntenas(central.getMapAntenas());
         a.leituraArquivoCelular(central.getMapCelulares(), central.getMapAntenas());
         central.iniciarCronometro();
         a.leituraArquivoEventos(central.getMapCelulares(), mapCentral);
@@ -132,7 +85,7 @@ public class Aplicacao extends Application{
     public static void escreverArquivoTexto() throws InterruptedException{
         Arquivos a = new Arquivos();
         a.escritaArquivo();
-        a.leituraArquivo(central.getMapAntenas());
+        a.leituraArquivoAntenas(central.getMapAntenas());
         a.leituraArquivoCelular(central.getMapCelulares(), central.getMapAntenas());
         a.leituraArquivoEventos(central.getMapCelulares(), mapCentral);
         central.iniciarCronometro();        
@@ -143,7 +96,7 @@ public class Aplicacao extends Application{
     
     public static void imprimirDadosCelulares() throws InterruptedException{
         Arquivos a = new Arquivos();
-        a.leituraArquivo(central.getMapAntenas());
+        a.leituraArquivoAntenas(central.getMapAntenas());
         a.leituraArquivoCelular(central.getMapCelulares(), central.getMapAntenas());
         String textoCelulares = "";
         for(Map.Entry<String,Celular> celularHash : mapCelulares.entrySet()){
@@ -155,7 +108,7 @@ public class Aplicacao extends Application{
     
     public static void imprimirDadosAntenas() throws InterruptedException{
         Arquivos a = new Arquivos();
-        a.leituraArquivo(central.getMapAntenas());
+        a.leituraArquivoAntenas(central.getMapAntenas());
         a.leituraArquivoCelular(central.getMapCelulares(), central.getMapAntenas());
         String textoAntenas = "";
         for(Map.Entry<String,Antena> antenaHash : mapAntenas.entrySet()){

@@ -70,7 +70,8 @@ public class Antena {
     }
     
     public void enviarMensagem(Celular celularDesejado, Mensagem mensagem, Central central) throws InterruptedException{
-        sleep(tempoTransmissao);
+        if(!mensagem.getPassouPelaCentral())
+            sleep(tempoTransmissao);
         if(numTransmissoesEmAndamento < capacidadeAtendimentos){
             numTransmissoesEmAndamento = numTransmissoesEmAndamento + 1;
             sleep(tempoTransmissao);

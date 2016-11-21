@@ -39,12 +39,12 @@ public class Celular {
         if(mensagem.getPassouPelaCentral()){
             mensagem.setTempoDeEntrega(central.getSegundosCronometro());
             mensagem.setEnviada(true);
-            System.out.println("================================================================================");
             System.out.println("Tempo para mensagem chegar: " + mensagem.getTempoDeEntrega());
-            System.out.println("================================================================================");
+            simulacao = simulacao + "Tempo para mensagem chegar: " + mensagem.getTempoDeEntrega() + "\n";
 
         }
-        System.out.println(this.getNumero() +  " recebeu a mensagem" + ": " + mensagem.getTexto() + " de " + mensagem.getNumCelularEnviando());
+        System.out.println(numero +  " recebeu a mensagem" + ": " + mensagem.getTexto() + " de " + mensagem.getNumCelularEnviando());
+        simulacao = simulacao + numero +  " recebeu a mensagem" + ": " + mensagem.getTexto() + " de " + mensagem.getNumCelularEnviando() + "\n";
     }
     
  
