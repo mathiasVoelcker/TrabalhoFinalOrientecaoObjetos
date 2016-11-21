@@ -52,12 +52,10 @@ public class Aplicacao extends Application{
     private static Map<String, Celular> mapCelulares = new HashMap<String, Celular>();
     private static Map<String, Antena> mapAntenas = new HashMap<String, Antena>();
     private static Map<String, Central> mapCentral = new HashMap<String, Central>(); 
-    private static Central central = new Central(mapCelulares, mapAntenas, 2);
     
     public static void main(String[] args) throws InterruptedException {
         
         
-        mapCentral.put("Central", central);
         String mensagem1 = "Seja bem vindo!";
         String mensagem2 = "Clique em Simulacao Tela para rodar simulacao na tela";
         String mensagem3 = "Clique em Simulacao Arquivo para salvar simulacao em um arquivo log";
@@ -72,8 +70,8 @@ public class Aplicacao extends Application{
 
     public static void rodarEmInterface() throws InterruptedException{
         Arquivos a = new Arquivos();
-        a.leituraArquivoAntenas(central.getMapAntenas());
-        a.leituraArquivoCelular(central.getMapCelulares(), central.getMapAntenas());
+        a.leituraArquivoInstancia(mapCelulares, mapAntenas, mapCentral);
+        Central central = mapCentral.get("Central");
         central.iniciarCronometro();
         a.leituraArquivoEventos(central.getMapCelulares(), mapCentral);
         sleep(60000);
@@ -85,8 +83,8 @@ public class Aplicacao extends Application{
     public static void escreverArquivoTexto() throws InterruptedException{
         Arquivos a = new Arquivos();
         a.escritaArquivo();
-        a.leituraArquivoAntenas(central.getMapAntenas());
-        a.leituraArquivoCelular(central.getMapCelulares(), central.getMapAntenas());
+        a.leituraArquivoInstancia(mapCelulares, mapAntenas, mapCentral);
+        Central central = mapCentral.get("Central");
         a.leituraArquivoEventos(central.getMapCelulares(), mapCentral);
         central.iniciarCronometro();        
         sleep(60000);
@@ -96,8 +94,8 @@ public class Aplicacao extends Application{
     
     public static void imprimirDadosCelulares() throws InterruptedException{
         Arquivos a = new Arquivos();
-        a.leituraArquivoAntenas(central.getMapAntenas());
-        a.leituraArquivoCelular(central.getMapCelulares(), central.getMapAntenas());
+        a.leituraArquivoInstancia(mapCelulares, mapAntenas, mapCentral);
+        Central central = mapCentral.get("Central");
         String textoCelulares = "";
         for(Map.Entry<String,Celular> celularHash : mapCelulares.entrySet()){
             Celular celular = celularHash.getValue();
@@ -108,8 +106,8 @@ public class Aplicacao extends Application{
     
     public static void imprimirDadosAntenas() throws InterruptedException{
         Arquivos a = new Arquivos();
-        a.leituraArquivoAntenas(central.getMapAntenas());
-        a.leituraArquivoCelular(central.getMapCelulares(), central.getMapAntenas());
+        a.leituraArquivoInstancia(mapCelulares, mapAntenas, mapCentral);
+        Central central = mapCentral.get("Central");
         String textoAntenas = "";
         for(Map.Entry<String,Antena> antenaHash : mapAntenas.entrySet()){
             Antena antena = antenaHash.getValue();

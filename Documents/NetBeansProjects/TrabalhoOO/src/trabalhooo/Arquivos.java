@@ -43,21 +43,48 @@ public class Arquivos {
     int qntCelulares = 0;
     int qntAntenas = 0;
     
-    public void leituraArquivoAntenas(Map<String, Antena> mapAntenas){
+    public void leituraArquivoInstancia(Map<String, Celular> mapCelulares, Map<String, Antena> mapAntenas, Map<String, Central> mapCentral){
 		BufferedReader br = null;
 		try {
 			String linha = null;
-			br = new BufferedReader(new FileReader("D:\\Temp\\antenas.txt"));
+			br = new BufferedReader(new FileReader("D:\\Temp\\instanciacao.txt"));
+                        int numAntenas = 0;
+                        int numCelulares = 0;
+                        int numCentrais = 0;
 			while ((linha = br.readLine()) != null) {
-                                Scanner sc = new Scanner(linha).useDelimiter(";");
-				String antenaNome = sc.next();
+                            Scanner sc = new Scanner(linha).useDelimiter(";");
+//                            System.out.println(sc.next());
+                            if(numAntenas>0){
+                                String antenaNome = sc.next();
                                 int capacidadeAntena = Integer.parseInt(sc.next());
                                 int tempoTransmissao = Integer.parseInt(sc.next());
                                 int capacidadeFila = Integer.parseInt(sc.next());
                                 System.out.println(antenaNome + ", " + capacidadeAntena + ", " + tempoTransmissao + ", " + capacidadeFila);
-//                              System.out.println(antenaNome + " " + capacidadeAntena + " "+tempoTransmissao + " " + capacidadeFila);
                                 mapAntenas.put(antenaNome, new Antena(antenaNome, capacidadeAntena, tempoTransmissao, capacidadeFila));
-                                qntAntenas = qntAntenas + 1;
+                                numAntenas--;
+                            }
+                            else if(numCelulares>0){
+                                String numero = sc.next();
+                                Antena antenaMaisProxima = mapAntenas.get(sc.next());
+                                System.out.println(numero + ", " + antenaMaisProxima.getNome());
+                                mapCelulares.put(numero, new Celular (numero, antenaMaisProxima));
+                                numCelulares--;
+                            }
+                            else if(numCentrais>0){                              
+                                String key = sc.next();
+                                mapCentral.put(key, new Central(mapCelulares, mapAntenas, Integer.parseInt(sc.next())));
+                                numCentrais--;
+                            }
+                            else{
+                                
+                            String texto = sc.next();
+                            if(texto.equals("Numero de Antenas"))
+                                numAntenas = Integer.parseInt(sc.next());
+                            else if(texto.equals("Numero de Celulares"))
+                                numCelulares = Integer.parseInt(sc.next());
+                            else if(texto.equals("Numero de Centrais"))
+                                numCentrais = Integer.parseInt(sc.next());
+                            }
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -117,36 +144,6 @@ public class Arquivos {
 			}
 		}
                 
-    }
-    
-    //ARMAZENAMENTO DE CELULARES
-    public void leituraArquivoCelular(Map<String, Celular> mapCelulares, Map<String, Antena> mapAntenas) throws InterruptedException{
-         BufferedReader br = null;
-
-		try {
-                   	String linha = null;
-                        
-			br = new BufferedReader(new FileReader("D:\\Temp\\celulares.txt"));
-
-			while ((linha = br.readLine()) != null) {
-                            Scanner sc = new Scanner(linha).useDelimiter(";");
-                            String numero = sc.next();
-                            Antena antenaMaisProxima = mapAntenas.get(sc.next());
-                            System.out.println(numero + ", " + antenaMaisProxima.getNome());
-                            mapCelulares.put(numero, new Celular (numero, antenaMaisProxima));
-                            qntCelulares = qntCelulares + 1;
-                        }
-                }catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (br != null)br.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-             
-                        System.out.println("qnt celulares="+qntCelulares);
-    }
     }
 
     public static void escritaArquivo(){
