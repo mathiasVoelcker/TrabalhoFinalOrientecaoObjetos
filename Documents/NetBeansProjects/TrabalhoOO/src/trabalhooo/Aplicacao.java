@@ -33,15 +33,15 @@ public class Aplicacao {
         Arquivos a = new Arquivos();
         a.leituraArquivo(mapAntenas);
         
-        System.out.println(mapAntenas.containsKey("a1"));
-        System.out.println(mapAntenas.containsKey("a2"));
-        System.out.println(mapAntenas.containsKey("a3"));
-        System.out.println(mapAntenas.containsKey("a4"));
-        System.out.println(mapAntenas.containsKey("a5"));
-        System.out.println(mapAntenas.containsKey("a6"));
+//        System.out.println(mapAntenas.containsKey("a1"));
+//        System.out.println(mapAntenas.containsKey("a2"));
+//        System.out.println(mapAntenas.containsKey("a3"));
+//        System.out.println(mapAntenas.containsKey("a4"));
+//        System.out.println(mapAntenas.containsKey("a5"));
+//        System.out.println(mapAntenas.containsKey("a6"));
         //==========================MUDAR ADD PARA PUT
-        Antena a1 = new Antena("antena1", 4, 4000, 5);
-        mapAntenas.put("anetna1", a1);
+//        Antena a1 = new Antena("antena1", 4, 4000, 5);
+//        mapAntenas.put("antena1", a1);
 //        Antena a2 = new Antena("antena2", 3, 3000, 4);
 //        mapAntenas.put("antena2", a2);
 //        Antena a3 = new Antena("antena3", 3, 5000, 3);
@@ -49,8 +49,13 @@ public class Aplicacao {
 //        Antena a4 = new Antena("antena4", 6, 2000, 6);
 //        antenas.add(a4);
 //        
-        Celular c1 = new Celular("99943338", a1);
-        mapCelulares.put("99994438", c1);
+     
+          a.leituraArquivoCelular(mapCelulares, mapAntenas);
+//        Celular c1 = new Celular("999943338", a1);
+//        mapCelulares.put("999943338", c1);
+//        Celular c2 = new Celular("9915326295", a1);
+//        mapCelulares.put("991536295", c2);
+        
         
 //        Celular c2 = new Celular("99932438", a1);
 //        celulares.add(c2);
@@ -64,8 +69,13 @@ public class Aplicacao {
 //        celulares.add(c6);
         
         Central central = new Central(mapCelulares, mapAntenas, 4);
-        mapCentral.put("Central", central);
+                mapCentral.put("Central", central);
+        
+        
+        a.escritaArquivo();
+        central.iniciarCronometro();
         a.leituraArquivoEventos(mapCelulares, mapCentral);
+        
         //=======================================================================================================
         
         
@@ -182,7 +192,7 @@ public class Aplicacao {
         
         //=====================================================================================
         
-        
+     //  a.escritaArquivo();
         
     }  
     
